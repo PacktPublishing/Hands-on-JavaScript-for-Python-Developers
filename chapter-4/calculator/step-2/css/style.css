@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-family: "Roboto",Helvetica,Arial,sans-serif;
+}
+
+.calculator {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 230px;
+}
+
+.calculator-screen {
+  width: 100%;
+  font-size: 5rem;
+  height: 80px;
+  border: none;
+  background-color: #393630;
+  color: #fff;
+  text-align: right;
+  padding-right: 20px;
+  padding-left: 10px;
+}
+
+button {
+  height: 60px;
+  background-color: #696762;
+  border: 1px solid #000;
+  border-collapse: collapse;
+  font-size: 2rem;
+  color: #fff;
+}
+
+button:active {
+  background-color: #999;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.operator {
+  color: #fff;
+  background-color: #ff940e;
+}
+
+.all-clear {
+  background-color: #4c4843;
+  color: #fff;
+  grid-column: 1 / 4;
+}
+
+.modifier:active {
+  background-color: #999;
+}
+
+.calculator-keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 0;
+  padding: 0;
+}
+
+.zero {
+  grid-column: 1 / 3;
+}
