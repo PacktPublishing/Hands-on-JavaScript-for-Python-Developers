@@ -6,8 +6,6 @@ window.onload  = (() => {
   output.value = expression
 
   const clickHandler = ((event) => {
-    let value = event.target.value
-
     /** Write your calculator logic here.
         Use conditionals and math to modify the output variable.
         Use parseInt and a new function, isNaN, to test against value
