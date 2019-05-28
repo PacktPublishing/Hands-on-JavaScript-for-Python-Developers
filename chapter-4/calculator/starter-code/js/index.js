@@ -13,9 +13,9 @@ window.onload  = (() => {
         to determine what to do.
 
         Expected things to use:
-          eval() - this is new and should be used sparingly.
+          eval() - this should be used sparingly as it is an expensive operation.
           https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
-          isNan() - also new.
+          isNan() - also a new introduction.
           https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN
           parseFloat()
           parseInt()
@@ -23,6 +23,7 @@ window.onload  = (() => {
           Assignment
     */
   })
+  
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].onclick = clickHandler
   }
