@@ -1,7 +1,8 @@
 window.onload  = (() => {
   const buttons = document.getElementsByTagName('button')
-  let output = document.getElementsByTagName('input')[0]
-  let expression = 0
+  const output = document.getElementsByTagName('input')[0]
+  let operation = null
+  let expression = firstNumber = secondNumber = 0
 
   output.value = expression
 
@@ -10,35 +11,59 @@ window.onload  = (() => {
 
     /** Write your calculator logic here.
         Use conditionals and math to modify the output variable.
-        Use parseInt and a new function, isNaN, to test against value
-        to determine what to do.
+
+        Example of how to use the operators object:
+          operators['='](1, 2) // returns 3
 
         Expected things to use:
-          eval() - this should be used sparingly as it is an expensive operation.
-          https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
-          isNan() - also a new introduction.
-          https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN
+          if/else
+          switch() - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch
           parseFloat()
-          parseInt()
           String concatenation
           Assignment
     */
 
-    if (value === '=') {
-      output.value = eval(expression)
-      expression = output.value
-    } else if (value === 'all-clear') {
-      expression = 0
-      output.value = 0
-    } else if (isNaN(parseFloat(value))) {
-      expression += value
-    } else {
-      expression += parseInt(value)
-      output.value = expression
+    switch(value) {
+      case 'all-clear':
+        firstNumber = secondNumber = expression = 0
+        output.value = 0
+        break
+      case '+':
+      case '-':
+      case '*':
+      case '/':
+        operation = value
+        if (firstNumber !== 0) {
+          secondNumber = parseFloat(expression)
+          let result = operators[operation](firstNumber, secondNumber)
+          output.value = expression = result
+        } else {
+          firstNumber = parseFloat(expression)
+        }
+        expression = 0
+        break
+      case '=':
+        secondNumber = parseFloat(expression)
+        let result = operators[operation](firstNumber, secondNumber)
+        output.value = expression = result
+        firstNumber = secondNumber = 0
+        break
+      default:
+        expression += value
+        expression = parseFloat(expression)
+        output.value = expression
+        break
     }
   })
-  
+
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].onclick = clickHandler
   }
+
+  const operators = {
+    '+': function(a, b) { return a + b },
+    '-': function(a, b) { return a - b },
+    '*': function(a, b) { return a * b },
+    '/': function(a, b) { return a / b }
+  };
 })
