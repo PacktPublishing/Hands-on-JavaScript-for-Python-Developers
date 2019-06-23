@@ -5,3 +5,4 @@ fetch('https://swapi.co/api/people/1/')
   .then((json) => {
   	document.querySelector('#main').innerHTML = JSON.stringify(json)
   })
+document.querySelector('#headline').innerHTML = "Luke Skywalker"
