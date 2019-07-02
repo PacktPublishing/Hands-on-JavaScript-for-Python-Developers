@@ -5,8 +5,11 @@ const b = [2, 5, 7, 9, 14]
 
 const products = { }
 
+// ...
+
 const getProducts = function(a,b) {
   // make an efficient means of retrieval
+  // ...
 }
 
 // bonus: get an arbitrary key/value pair. If nonexistent, compute it and store it.
