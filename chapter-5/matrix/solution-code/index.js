@@ -15,7 +15,7 @@ const makeProducts = function(array1, array2) {
         products[multiplier] = { }
       }
       products[multiplicant][multiplier] = multiplicant * multiplier
-      products[multiplier][multiplicant] = multiplicant * multiplier
+      products[multiplier][multiplicant] = products[multiplicant][multiplier]
     })
   })
 }
