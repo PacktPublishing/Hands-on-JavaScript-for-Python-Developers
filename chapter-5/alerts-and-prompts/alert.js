@@ -3,7 +3,7 @@ const Officer = function(name, rank, posting) {
   this.rank = rank
   this.posting = posting
   this.sayHello = () => {
-  	alert(this.name)
+    alert(this.name)
   }
 }
 

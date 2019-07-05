@@ -4,7 +4,7 @@ const Officer = function(name, rank, posting) {
   this.posting = posting
 
   this.ask = () => {
-    const values = ['name','rank','posting']
+    const values = ['name', 'rank', 'posting']
 
     let answer = prompt("What would you like to know about this officer?")
     answer = answer.toLowerCase()

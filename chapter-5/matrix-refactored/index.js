@@ -39,7 +39,7 @@ async function calculation(value1, value2) {
   return value1 * value2
 }
 
-makeProducts(a,b).then((arrOfPromises) => {
+makeProducts(a, b).then((arrOfPromises) => {
   Promise.all(arrOfPromises).then(() => {
     console.log(`${a[4]} x ${b[0]} = ${getProducts(a[4], b[0])}`) // 18
   })

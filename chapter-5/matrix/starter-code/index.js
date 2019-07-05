@@ -3,11 +3,11 @@ const b = [2, 5, 7, 9, 14]
 
 // compute the products of each permutation for efficient retrieval
 
-const products = { }
+const products = {}
 
 // ...
 
-const getProducts = function(a,b) {
+const getProducts = function(a, b) {
   // make an efficient means of retrieval
   // ...
 }

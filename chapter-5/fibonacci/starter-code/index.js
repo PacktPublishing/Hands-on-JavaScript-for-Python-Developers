@@ -1,4 +1,4 @@
-function fibonacci(num){
+function fibonacci(num) {
   // write your  code here
 }
 
