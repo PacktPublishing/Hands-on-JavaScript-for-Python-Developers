@@ -24,25 +24,25 @@ fetch('https://swapi.co/api/people/1/')
       })
       .then(() => {
         const filmPromise = new Promise((resolve, reject) => {
-					let counter = 0
-					for (let i = 0; i < films.length; i++) {
-						fetch(films[i])
-          		.then((response) => {
-          			return response.json()
-          		})
-          		.then((json) => {
-          			filmNames += json.title + ', '
-								counter++
-								if (counter === films.length) {
-									resolve()
-								}
-          		})
-	          }
+            let counter = 0
+            for (let i = 0; i < films.length; i++) {
+              fetch(films[i])
+                .then((response) => {
+                  return response.json()
+                })
+                .then((json) => {
+                  filmNames += json.title + ', '
+                  counter++
+                  if (counter === films.length) {
+                    resolve()
+                  }
+                })
+            }
 
-					})
-					.then(() => {
-						hello = hello.replace('{name}', name).replace('{planet}', planet).replace('{films}', filmNames)
-						document.querySelector('#main').innerHTML = hello
-					})
-			})
+          })
+          .then(() => {
+            hello = hello.replace('{name}', name).replace('{planet}', planet).replace('{films}', filmNames)
+            document.querySelector('#main').innerHTML = hello
+          })
+      })
   })

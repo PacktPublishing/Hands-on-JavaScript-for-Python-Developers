@@ -1,4 +1,4 @@
-window.onload  = (() => {
+window.onload = (() => {
   const buttons = document.getElementsByTagName('button')
   const output = document.getElementsByTagName('input')[0]
   let operation = null
@@ -30,9 +30,17 @@ window.onload  = (() => {
   }
 
   const operators = {
-    '+': function(a, b) { return a + b },
-    '-': function(a, b) { return a - b },
-    '*': function(a, b) { return a * b },
-    '/': function(a, b) { return a / b }
+    '+': function(a, b) {
+      return a + b
+    },
+    '-': function(a, b) {
+      return a - b
+    },
+    '*': function(a, b) {
+      return a * b
+    },
+    '/': function(a, b) {
+      return a / b
+    }
   };
 })

@@ -1,4 +1,4 @@
-window.onload  = (() => {
+window.onload = (() => {
   const buttons = document.getElementsByTagName('button')
   const output = document.getElementsByTagName('input')[0]
   let operation = null
@@ -23,7 +23,7 @@ window.onload  = (() => {
           Assignment
     */
 
-    switch(value) {
+    switch (value) {
       case 'all-clear':
         firstNumber = secondNumber = expression = 0
         output.value = 0
@@ -61,9 +61,17 @@ window.onload  = (() => {
   }
 
   const operators = {
-    '+': function(a, b) { return a + b },
-    '-': function(a, b) { return a - b },
-    '*': function(a, b) { return a * b },
-    '/': function(a, b) { return a / b }
+    '+': function(a, b) {
+      return a + b
+    },
+    '-': function(a, b) {
+      return a - b
+    },
+    '*': function(a, b) {
+      return a * b
+    },
+    '/': function(a, b) {
+      return a / b
+    }
   };
 })
