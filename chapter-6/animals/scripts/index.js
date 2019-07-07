@@ -15,3 +15,7 @@ buttons.forEach((button) => {
     document.querySelector('img').src = `${images.path}${images[e.target.id]}`
   })
 })
+
+document.querySelector('#image').addEventListener('mouseover', (e) => {
+  alert(`My favorite picture is ${e.target.src}`)
+})
