@@ -10,7 +10,6 @@ const images = {
 
 const buttons = document.querySelectorAll('.flex-item');
 
-
 buttons.forEach((button) => {
   button.addEventListener('click', (e) => {
     document.querySelector('img').src = `${images.path}${images[e.target.id]}`
