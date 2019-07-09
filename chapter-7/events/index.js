@@ -1,7 +1,16 @@
 const phases = {
-  1: 'capture',
-  2: 'target',
-  3: 'bubble'
+    1: 'capture',
+    2: 'target',
+    3: 'bubble'
+};
+
+function logClick(event){
+    let currentTarget = event.currentTarget.tagName;
+    let phaseName = phases[event.eventPhase];
+    let message = 'Click event triggered during '+ phaseName +' phase at ' + currentTarget;
+    message += ' And this event was previously handled at ' + event.previouslyHandledTagName;
+    console.log(message)
+    event.previouslyHandledTagName = currentTarget;
 }
 
 document.querySelector('button').addEventListener('mousemove', (e) => {
@@ -19,11 +28,7 @@ document.querySelector('body').addEventListener('mousemove', (e) => {
   document.querySelector('#y-body').value = e.y
 })
 
-document.querySelector('button').addEventListener('click', clickHandler)
-document.querySelector('.box').addEventListener('click', clickHandler)
-document.querySelector('html').addEventListener('click', clickHandler)
 
-function clickHandler(e) {
-  console.log(`clicked in phase ${phases[e.eventPhase]}`)
-
-}
+document.querySelector('html').addEventListener('click', logClick);
+document.querySelector('body').addEventListener('click', logClick);
+document.querySelector('button').addEventListener('click', logClick);
