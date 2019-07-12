@@ -29,6 +29,6 @@ document.querySelector('body').addEventListener('mousemove', (e) => {
 })
 
 
-document.querySelector('html').addEventListener('click', logClick, true);
-document.querySelector('body').addEventListener('click', logClick);
-document.querySelector('button').addEventListener('click', logClick);
+document.querySelector('html').addEventListener('click', logClick, true)
+document.querySelector('body').addEventListener('click', logClick)
+document.querySelector('button').addEventListener('click', logClick)
