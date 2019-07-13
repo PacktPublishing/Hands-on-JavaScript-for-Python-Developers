@@ -19,7 +19,7 @@ document.querySelector('.box-creator-button').addEventListener('click', () => {
   const color = stickyColor.style.backgroundColor
 
   // blank out the input fields
-  stickyMessage.value =  stickyColor.value = ''
+  stickyMessage.value = stickyColor.value = ''
   stickyColor.style.backgroundColor = '#fff'
 
   // define the attributes
@@ -43,6 +43,5 @@ document.querySelector('.box-creator-button').addEventListener('click', () => {
 })
 
 document.querySelector('#close').addEventListener('click', (e) => {
-  console.log('close')
   messageBox.style.visibility = 'hidden'
 })
