@@ -4,11 +4,13 @@ body {
   height: 100%;
   width: 100%;
 }
+
 .container {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
 .box {
   height: 200px;
   width: 200px;

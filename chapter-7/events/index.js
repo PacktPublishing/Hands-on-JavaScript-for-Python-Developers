@@ -1,16 +1,16 @@
 const phases = {
-    1: 'capture',
-    2: 'target',
-    3: 'bubble'
+  1: 'capture',
+  2: 'target',
+  3: 'bubble'
 };
 
-function logClick(event){
-    let currentTarget = event.currentTarget.tagName;
-    let phaseName = phases[event.eventPhase];
-    let message = 'Click event triggered during '+ phaseName +' phase at ' + currentTarget;
-    message += ' And this event was previously handled at ' + event.previouslyHandledTagName;
-    console.log(message)
-    event.previouslyHandledTagName = currentTarget;
+function logClick(event) {
+  let currentTarget = event.currentTarget.tagName;
+  let phaseName = phases[event.eventPhase];
+  let message = 'Click event triggered during ' + phaseName + ' phase at ' + currentTarget;
+  message += ' And this event was previously handled at ' + event.previouslyHandledTagName;
+  console.log(message)
+  event.previouslyHandledTagName = currentTarget;
 }
 
 document.querySelector('button').addEventListener('mousemove', (e) => {
