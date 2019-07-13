@@ -1,0 +1,43 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+.container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.box {
+  height: 200px;
+  width: 200px;
+  margin: 2px;
+  text-align: center;
+  font-size: 1.5em;
+  line-height: 185px;
+  font-weight: bold;
+}
+
+#messageBox {
+  width: 300px;
+  height: 200px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid black;
+  box-shadow: 5px 5px #ccc;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  text-align: center;
+  visibility: hidden;
+  background-color: #ccc;
+}
+
+#messageBox button {
+  margin: 10px;
+}
+
+#messageBox span {
+  font-weight: bold;
+}
