@@ -1,48 +1,50 @@
-let name = '',
-  planet = '',
-  films = [],
-  filmNames = ''
-let hello = "Hello! My name is {name} and I'm from {planet}. I've been in {films} and I'm a Jedi."
+class SWAPI {
+  constructor() {
+    this.loader = document.querySelector('#loader')
+    this.people = []
+  }
 
-fetch('https://swapi.co/api/people/1/')
-  .then((response) => {
-    return response.json()
-  })
-  .then((json) => {
-    name = json.name
-    planet = json.homeworld
-    films = json.films
-    return json
-  })
-  .then((json) => {
-    fetch(planet)
+  fetchThis(url, arr, resolve, reject) {
+    fetch(url)
       .then((response) => {
         return response.json()
       })
-      .then((json) => {
-        planet = json.name
-      })
-      .then(() => {
-        const filmPromise = new Promise((resolve, reject) => {
-            let counter = 0
-            for (let i = 0; i < films.length; i++) {
-              fetch(films[i])
-                .then((response) => {
-                  return response.json()
-                })
-                .then((json) => {
-                  filmNames += json.title + ', '
-                  counter++
-                  if (counter === films.length) {
-                    resolve()
-                  }
-                })
-            }
+      .then((data) => {
+        arr = [...arr, ...data.results]
 
-          })
-          .then(() => {
-            hello = hello.replace('{name}', name).replace('{planet}', planet).replace('{films}', filmNames)
-            document.querySelector('#main').innerHTML = hello
-          })
+        if (data.next !== null) {
+          this.fetchThis(data.next, arr, resolve, reject)
+        } else {
+          resolve(arr)
+        }
       })
-  })
+  }
+
+  getPeople() {
+    new Promise((resolve, reject) => {
+        this.fetchThis('https://swapi.co/api/people', this.people, resolve, reject)
+      })
+      .then((response) => {
+        this.people = response
+        const peopleSelector = document.querySelector('#peopleSelector')
+        this.people.forEach((person) => {
+          const option = document.createElement('option')
+          option.value = person.url
+          option.innerHTML = person.name
+          peopleSelector.appendChild(option)
+        })
+        this.toggleLoader()
+        document.querySelector('#people').style.visibility = 'visible'
+      })
+  }
+
+  toggleLoader() {
+    if (this.loader.style.visibility === 'visible' || this.loader.style.visibility === '') {
+      this.loader.style.visibility = 'hidden'
+    } else {
+      this.loader.style.visibility = 'visible'
+    }
+  }
+}
+
+const s = new SWAPI().getPeople()
