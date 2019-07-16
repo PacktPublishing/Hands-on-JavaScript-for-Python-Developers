@@ -127,6 +127,8 @@ class Poke {
           } else {
             this.doResult("It's effective!", true)
           }
+        } else {
+          this.doResult("It's not very effective...", true)
         }
       })
   }
@@ -143,18 +145,20 @@ class Poke {
     result.style.opacity = 1
 
     if (fade === true) {
-      let fadeEffect = setInterval(() => {
-        if (!result.style.opacity) {
-          result.style.opacity = 1;
-        }
-        if (result.style.opacity > 0) {
-          result.style.opacity -= 0.1;
-        } else {
-          clearInterval(fadeEffect);
+      setTimeout(() => {
+        let fadeEffect = setInterval(() => {
+          if (!result.style.opacity) {
+            result.style.opacity = 1;
+          }
+          if (result.style.opacity > 0) {
+            result.style.opacity -= 0.1;
+          } else {
+            clearInterval(fadeEffect);
 
-          result.style.visibility = 'hidden'
-        }
-      }, 100);
+            result.style.visibility = 'hidden'
+          }
+        }, 100)
+      }, 1000)
     }
 
   }
