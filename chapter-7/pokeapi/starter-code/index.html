@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Pokémon Battle!</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Pokémon Battle!</h1>
+
+    <div id="loader"></div>
+
+    <div id="result"><h2></h2></div>
+
+    <div id="Player1" class="player">
+      <h2>Choose a Pokémon, Player 1!</h2>
+      <select class="pokeSelector main">
+
+      </select>
+      <button class="go">Go</button>
+
+      <div id="card1" class="card">
+        <h3></h3>
+
+        <table>
+          <tr>
+            <td rowspan="2"><img src=""></td>
+            <td>HP:<span class="hp"></span></td>
+          </tr>
+          <tr>
+            <td>Moves:
+              <button class="move1"></button>
+              <button class="move2"></button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+
+    <div id="Player2" class="player">
+      <h2>Choose a Pokémon, Player 2!</h2>
+      <select class="pokeSelector clone">
+
+      </select>
+      <button class="go">Go</button>
+
+      <div id="card2" class="card">
+        <h3></h3>
+
+        <table>
+          <tr>
+            <td rowspan="2"><img src=""></td>
+            <td>HP:<span class="hp"></span></td>
+          </tr>
+          <tr>
+            <td>Moves:
+              <button class="move1"></button>
+              <button class="move2"></button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+
+    <script src="main.js"></script>
+  </body>
+</html>

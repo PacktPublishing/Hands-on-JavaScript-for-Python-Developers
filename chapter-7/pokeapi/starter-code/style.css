@@ -1,0 +1,91 @@
+
+@font-face {
+    font-family: 'pokemon';
+    src: url('fonts/pokemon_solid-webfont.woff2') format('woff2'),
+         url('fonts/pokemon_solid-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+  background: #000 url('images/pokemon-2048x1152.jpg');
+  font-family: sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'pokemon', sans-serif;
+  letter-spacing: 4px;
+}
+
+h1, h2 {
+  color: #fff;
+}
+
+h3 {
+  color: #000;
+  text-transform: capitalize;
+}
+
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #00F;
+  border-radius: 50%;
+  border-top: 16px solid #aaf;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  visibility: visible;
+}
+
+#result {
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  line-height: 500px;
+  visibility: hidden;
+  background-color: rgba(0,0,0,0.75);
+}
+
+
+#result h2 {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.player, .card {
+  visibility: hidden;
+}
+
+.card {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 200px;
+  padding: 10px;
+  margin: 20px 0 0 0;
+}
+
+.player {
+  float:left;
+  display: inline;
+  width: 50%;
+}
