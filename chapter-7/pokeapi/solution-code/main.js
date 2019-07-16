@@ -138,7 +138,6 @@ class Poke {
   }
 
   doResult(data, fade = false) {
-    console.log(fade)
     const result = document.querySelector('#result')
     result.querySelector('h2').innerHTML = data
     result.style.visibility = 'visible'
