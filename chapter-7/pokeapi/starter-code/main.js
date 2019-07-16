@@ -1,7 +1,7 @@
 /**
   * Let's use the `class` structure! It's pretty similar to what you've probably seen in other languages. Classes are new to ES6, by the way.
   */
-  s
+  
 class Poke {
   constructor() {
     /**
