@@ -2,7 +2,7 @@ const phases = {
   1: 'capture',
   2: 'target',
   3: 'bubble'
-};
+}
 
 function logClick(event) {
   let currentTarget = event.currentTarget.tagName;
