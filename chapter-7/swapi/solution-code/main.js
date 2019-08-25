@@ -50,6 +50,7 @@ class SWAPI {
   }
 
   getPerson(url) {
+    this.toggleLoader()
     fetch(url)
       .then((response) => {
         return response.json()
@@ -57,6 +58,7 @@ class SWAPI {
       .then((json) => {
         document.querySelector('#person').style.visibility = 'visible'
         document.querySelector('#person h2').innerHTML = json.name
+        this.toggleLoader()
       })
       .catch((err) => {
         console.log(err)
