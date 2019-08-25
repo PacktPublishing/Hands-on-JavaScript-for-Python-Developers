@@ -2,6 +2,10 @@ class SWAPI {
   constructor() {
     this.loader = document.querySelector('#loader')
     this.people = []
+
+    document.querySelector('.go').addEventListener('click', (e) => {
+      this.getPerson(document.querySelector('#peopleSelector').value)
+    })
   }
 
   fetchThis(url, arr, resolve, reject) {
@@ -18,6 +22,9 @@ class SWAPI {
           resolve(arr)
         }
       })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   getPeople() {
@@ -27,6 +34,7 @@ class SWAPI {
       .then((response) => {
         this.people = response
         const peopleSelector = document.querySelector('#peopleSelector')
+
         this.people.forEach((person) => {
           const option = document.createElement('option')
           option.value = person.url
@@ -35,6 +43,25 @@ class SWAPI {
         })
         this.toggleLoader()
         document.querySelector('#people').style.visibility = 'visible'
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  getPerson(url) {
+    this.toggleLoader()
+    fetch(url)
+      .then((response) => {
+        return response.json()
+      })
+      .then((json) => {
+        document.querySelector('#person').style.visibility = 'visible'
+        document.querySelector('#person h2').innerHTML = json.name
+        this.toggleLoader()
+      })
+      .catch((err) => {
+        console.log(err)
       })
   }
 
