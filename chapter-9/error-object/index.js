@@ -18,5 +18,5 @@ const fetchAttempt = () => {
 }
 
 
-//typoError()
+typoError()
 fetchAttempt()

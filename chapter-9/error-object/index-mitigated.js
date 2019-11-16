@@ -7,19 +7,19 @@ const typoError = () => {
 }
 
 const fetchAttempt = () => {
-  fetch("http://httpstat.us/500")
+  fetch("https://swapi.co/api/undefined")
     .then((response) => {
-        return response
+        try {
+          return response.json()
+        } catch (e) {
+          return response.error()
+        }
     }).then((data) => {
-      if (data.status === 500) {
-        throw new Error(data)
-      }
       console.log(data)
     }).catch((error) => {
         throw new Error(error)
     })
 }
-
 
 typoError()
 fetchAttempt()
