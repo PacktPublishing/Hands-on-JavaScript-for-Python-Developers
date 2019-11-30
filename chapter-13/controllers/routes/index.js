@@ -1,14 +1,16 @@
 var express = require('express');
 var router = express.Router();
+var UsersController = require('../controllers/users.js');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  var store = require('data-store')({ path: process.cwd() + '/users.json' });
-  res.render('index', { users: store.get('users')});
+router.get('/', async function(req, res, next) {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  let users = await UsersController.getUsers();
+  res.render('index', { users: users });
 });
 
-router.get('/create', function(req, res, next) {
-  res.render('create');
+router.post('/', function(req, res, next) {
+  console.log(req.body.users)
+  res.redirect('/');
 });
-
 module.exports = router;

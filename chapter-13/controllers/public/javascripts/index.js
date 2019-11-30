@@ -9,3 +9,11 @@ deleteButtons.forEach((button) => {
     })
   })
 })
+
+document.querySelector('.add-user').addEventListener('click', (e) => {
+  fetch('/user', {
+    method: 'POST'
+  }).then( (data) => {
+    window.location.reload()
+  })
+})

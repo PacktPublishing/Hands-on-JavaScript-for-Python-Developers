@@ -1,12 +1,13 @@
 <h1>User Management</h1>
 
-<a class="btn btn-primary" role="button" href="/create">Add User</a>
+<a class="btn btn-primary add-user" role="button" href="#">Add User</a>
 
 <hr />
 
 <table id="users" class="table">
   <thead>
     <tr>
+      <th></th>
       <th>Username</th>
       <th>Name</th>
       <th></th>
@@ -15,8 +16,9 @@
   
   {{#each users}}
     <tr id={{ this.id }}>
-      <td><a href="/user/{{ this.id}}">{{ this.username }}</a></td>
-      <td>{{ this.fullname }}</td>
+      <td><img src="{{ this.avatar }}" /></td>
+      <td><a href="/user/{{this.id}}">{{ this.username }}</a></td>
+      <td>{{ this.name }}</td>
       <td><a class="btn btn-primary delete" role="button" href="#">Delete User</a></td>
     </tr>
   {{/each}}

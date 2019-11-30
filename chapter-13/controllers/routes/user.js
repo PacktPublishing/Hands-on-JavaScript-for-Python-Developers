@@ -1,32 +1,28 @@
 var express = require('express');
 var router = express.Router();
-var store = require('data-store')({ path: process.cwd() + '/users.json' });
 
-/* GET user. */
-router.get('/:user', function(req, res, next) {
-  res.send(store.get('user')[req.params.user]);
+const UsersController = require('../controllers/users');
+
+/* GET all users. */
+router.get('/', async function(req, res, next) {
+  res.send(await UsersController.getUsers());
 });
 
-/* POST user. */
-router.post('/', function(req, res, next) {
-  fetch('https://randomuser.me/api/', (data) => {
+/* GET user. */
+router.get('/:user', async function(req, res, next) {
+  const user = await UsersController.getUser(req.params.user);
+  res.render('user', { user: user });
+});
 
-  });
-
-  store.union('users', { id: Date.now(), username: req.body.username, fullname: req.body.name });
-  res.sendStatus(200);
+/* POST to create user. */
+router.post('/', async function(req, res, next) {
+  await UsersController.createUser();
+  res.send(await UsersController.getUsers());
 });
 
 /* DELETE user. */
-router.delete('/:user', function(req, res, next) {
-  let users = store.get('users');
-  for (x in users) {
-    if (users[x].id == req.params.user) {
-      users.splice(x,1);
-    }
-  }
-
-  store.set('users', users);
+router.delete('/:user', async function(req, res, next) {
+  await UsersController.deleteUser(req.params.user);
   res.sendStatus(200);
 });
 

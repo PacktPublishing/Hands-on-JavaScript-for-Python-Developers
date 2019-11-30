@@ -1,2 +1,13 @@
-<h1>User</h1>
+<h1>{{ user.name }}</h1>
 
+
+<table class="table">
+  <tr>
+    <td><img src="{{ user.avatar }}" /></td>
+    <td>{{ user.username }}</td>
+    <td>{{ user.email }}</td>
+    <td id="{{ user.id }}"><a class="btn btn-primary delete" role="button" href="#">Delete {{ user.name }}</a></td>
+  </tr>
+</table>
+
+<script src="/javascripts/delete.js"></script>
