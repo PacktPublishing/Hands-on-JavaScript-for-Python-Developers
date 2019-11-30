@@ -9,8 +9,4 @@ router.get('/', async (req, res, next) => {
   res.render('index', { users: users });
 });
 
-router.post('/', (req, res, next) => {
-  res.redirect('/');
-});
-
 module.exports = router;
