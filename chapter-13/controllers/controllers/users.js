@@ -15,6 +15,6 @@ exports.getUser = async (userID) => {
 
 exports.getUsers = async () => {
   return new Promise((resolve, reject) => {
-    resolve(UsersModel.getUsers())
+    resolve(UsersModel.getUsers());
   })
 }

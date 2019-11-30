@@ -19,7 +19,7 @@ exports.createUser = () => {
               email: parsedData.email,
               id: parsedData.login.uuid,
               avatar: parsedData.picture.thumbnail
-          }
+          };
           storage.setItem(user.id, user);
           resolve(user);
         } catch (e) {
