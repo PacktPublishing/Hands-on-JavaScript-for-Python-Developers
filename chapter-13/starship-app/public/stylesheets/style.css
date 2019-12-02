@@ -1,0 +1,18 @@
+body {
+  padding: 50px;
+  font: 14px Helvetica, Arial, sans-serif;
+  background: #000 url(/images/bg.jpg) no-repeat;
+  background-size: cover;
+  color: #fff;
+}
+
+a {
+  color: #00B7FF;
+}
+
+input[type="text"], input[type="number"] {
+  color: #fff;
+  background-color: #000;
+  border: 1px solid #ccc;
+  width: 200px;
+}
