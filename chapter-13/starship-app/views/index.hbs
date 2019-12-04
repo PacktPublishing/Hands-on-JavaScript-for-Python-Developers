@@ -1,0 +1,59 @@
+<h1>Starship Fleet</h1>
+
+<hr />
+
+<h2>Fleet Status</h2>
+{{#if ships.length}}
+  <table class="table">
+    <tr>
+      <th>Name</th>	
+      <th>Registry</th>
+      <th>Top Speed</th>
+      <th>Shield Strength</th>
+      <th>Phaser Power</th>
+      <th>Hull Damage</th>
+      <th>Torpedo Complement</th>
+    </tr>
+  {{#each ships}}
+    <tr>
+      <td>{{this.name}}</td>
+      <td>{{this.registry}}</td>
+      <td>{{this.speed}}</td>
+      <td>{{this.shields}}</td>
+      <td>{{this.phasers}}</td>
+      <td>{{this.hull}}</td>
+      <td>{{this.torpedoes}}</td>
+    </tr>
+  {{/each}}
+  </table>
+{{else}}
+  <p>The fleet is empty. Create some ships below.</p>
+{{/if}}
+<hr />
+
+<h2>Add Starship</h2>
+  <form id="addShip" action="#">
+    <table class="table">
+      <tr>
+        <td colspan="6"><a class="btn btn-primary random">Add a Random Ship</a></td>
+      </tr>
+      <tr>
+        <th>Name</th>	
+        <th>Registry</th>
+        <th>Top Speed</th>
+        <th>Phaser Power</th>
+        <th>Torpedo Complement</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><input type="text" name="name" id="name" placeholder="USS Enterprise" value="USS Enterprise" /></td>
+        <td><input type="text" name="registry" id="registry" placeholder="NCC-1701-D" value="NCC-1701-D" /></td>
+        <td><input type="number" name="speed" id="speed" class="number" placeholder="Between 1-9.99" step=".1" max="9.99" min="1" value="9.9" /></td>
+        <td><input type="number" name="phasers" id="phasers" class="number" placeholder="Between 1-100" step="1" min="1" max="100" value="100" /></td>
+        <td><input type="number" name="torpedoes" id="torpedoes" class="number" placeholder="Between 1-255" step="1" min="1" max="255" value="255" /></td>
+        <td><a class="btn btn-primary add-ship">Add Ship</a></td>
+      </tr>
+    </table>
+  </form>
+
+<script src="/javascripts/index.js"></script>
