@@ -26,7 +26,10 @@ exports.createRandom = async () => {
     torpedoes: Math.round(Math.random()*255+1),
     hull: 0,
     speed: (Math.random()*9+1).toPrecision(2),
-    phasers: Math.round(Math.random()*100+1)
+    phasers: Math.round(Math.random()*100+1),
+    x: 0,
+    y: 0,
+    z: 0
   };
 
   if (storage.getItem(shipData.registry) || storage.values('name') == shipData.name) {
@@ -36,4 +39,13 @@ exports.createRandom = async () => {
   
   await storage.setItem(shipData.registry, shipData);
   return;
+}
+
+exports.scuttle = async (ship) => {
+  await storage.removeItem(ship);
+  return;
+}
+
+exports.getShip = async (ship) => {
+  return await storage.getItem(ship);
 }

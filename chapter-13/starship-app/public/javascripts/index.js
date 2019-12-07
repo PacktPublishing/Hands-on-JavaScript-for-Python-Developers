@@ -10,6 +10,16 @@ document.querySelectorAll('.number').forEach((el) => {
   })
 })
 
+document.querySelectorAll('.scuttle').forEach((el) => {
+  el.addEventListener('click', (e) => {
+    fetch(`/ships/${e.currentTarget.closest('tr').dataset.ship}`, {
+      method: 'DELETE'
+    }).then( () => {
+      window.location.reload();
+    })
+  })
+})
+
 document.querySelector('.add-ship').addEventListener('click', () => {
   fetch('/ships', {
     method: 'POST',
