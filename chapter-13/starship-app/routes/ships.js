@@ -7,7 +7,7 @@ const ShipsController = require('../controllers/ships');
 
 router.get('/:ship1/attack/:ship2', async (req, res, next) => {
   const damage = await ShipsController.fire(req.params.ship1, req.params.ship2);
-  console.log(damage);
+  console.log('damage',damage);
   res.sendStatus(200);
 });
 

@@ -49,3 +49,27 @@ exports.scuttle = async (ship) => {
 exports.getShip = async (ship) => {
   return await storage.getItem(ship);
 }
+
+exports.fireTorpedo = async (ship) => {
+  const source = await storage.getItem(ship);
+  return await storage.setItem(source.torpedoes, source.torpedoes--);
+}
+
+exports.registerDamage = async (ship, damage) => {
+  const target = await storage.getItem(ship);
+  if (target.shields) {
+    target.shields -= damage;
+    if (target.shields < 0) {
+      target.hull -= Math.abs(target.shields);
+      target.shields = 0;
+    }
+  }
+
+  await storage.setItem(ship, target);
+  if (target.hull <= 0) {
+    this.scuttle(ship);
+    return 0;
+  }
+
+  return { shields: target.shields, hull: target.hull };
+}
