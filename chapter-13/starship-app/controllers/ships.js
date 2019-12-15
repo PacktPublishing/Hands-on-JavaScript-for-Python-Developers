@@ -2,7 +2,7 @@ const ShipsModel = require('../models/ships');
 
 const TORPEDO_DAMAGE = 125;
 
-const calculateDamge = (ship1, ship2, weapon) => {
+const calculateDamage = (ship1, ship2, weapon) => {
   const distanceBetweenShips =  Math.sqrt(Math.pow(ship2.x - ship1.x, 2) + Math.pow(ship2.y - ship1.y, 2) + Math.pow(ship2.z - ship1.z, 2));
   const chanceToStrike = Math.floor(100-distanceBetweenShips);
   const didStrike = (Math.ceil(Math.random()*100) - chanceToStrike) ? true : false;
