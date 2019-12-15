@@ -53,7 +53,7 @@ exports.createRandom = async () => {
     z: 0
   };
 
-  while(unavailableRegistries.includes(shipData.registry)) {
+  while (unavailableRegistries.includes(shipData.registry)) {
     shipData.registry = `NCC-${Math.round(Math.random() * 10000)}`;
   }
   await storage.setItem(shipData.registry, shipData);
