@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.3.2",
+    "serialize-javascript": "^2.1.1",
     "vue": "^2.6.10"
   },
   "devDependencies": {
