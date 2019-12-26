@@ -10,11 +10,7 @@
 {% endif %}
 {% endwith %}
 
-{% if form.name %}
-<h2>Change your name?</h2>
-{% else %}
 <h2>Please enter your name:</h2>
-{% endif %}
 <form action="/" method="post">
     <div class="input text">
         {{ form.name.label }} {{ form.name }}
