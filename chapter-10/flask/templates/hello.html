@@ -1,0 +1,25 @@
+<title>Hello!</title>
+
+<p>The time is {{ now }}.</p>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message[1] }}</li>
+    {% endfor %}</ul>
+{% endif %}
+{% endwith %}
+
+{% if form.name %}
+<h2>Change your name?</h2>
+{% else %}
+<h2>Please enter your name:</h2>
+{% endif %}
+<form action="/" method="post">
+    <div class="input text">
+        {{ form.name.label }} {{ form.name }}
+    </div>
+    <div class="input submit">
+        <input type="submit" value="Submit"/>
+    </div>
+</form>
