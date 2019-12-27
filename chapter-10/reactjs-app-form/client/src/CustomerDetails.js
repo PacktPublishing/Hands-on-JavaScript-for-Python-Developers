@@ -58,47 +58,47 @@ export default class CustomerDetails extends Component {
           <Form>
             <FormGroup>
               <Label>Name:</Label>
-              <FormControl name="name" type="text" placeholder="Enter name" value={this.state.customerDetails.data.name} onChange={this.handleChange} />
+              <FormControl name="name" type="text" value={this.state.customerDetails.data.name} onChange={this.handleChange} />
             </FormGroup>
 
             <FormGroup>
               <Label>Email:</Label>
-              <FormControl name="email" type="email" placeholder="Enter email" value={this.state.customerDetails.data.email} onChange={this.handleChange} />
+              <FormControl name="email" type="email" value={this.state.customerDetails.data.email} onChange={this.handleChange} />
             </FormGroup>
 
             <FormGroup>
               <Label>Phone:</Label>
-              <FormControl name="phone" type="number" placeholder="Enter phone" value={this.state.customerDetails.data.phone} onChange={this.handleChange} />
+              <FormControl name="phone" type="number" value={this.state.customerDetails.data.phone} onChange={this.handleChange} />
             </FormGroup>
 
             <FormGroup>
               <Label>City:</Label>
-              <FormControl name="city" type="text" placeholder="Enter email" value={this.state.customerDetails.data.city} onChange={this.handleChange} />
+              <FormControl name="city" type="text" value={this.state.customerDetails.data.city} onChange={this.handleChange} />
             </FormGroup>
 
             <FormGroup>
               <Label>State:</Label>
-              <FormControl name="state" type="text" placeholder="Enter email" value={this.state.customerDetails.data.state} onChange={this.handleChange} />
+              <FormControl name="state" type="text" value={this.state.customerDetails.data.state} onChange={this.handleChange} />
             </FormGroup>
 
             <FormGroup>
               <Label>Country:</Label>
-              <FormControl name="country" type="test" placeholder="Enter email" value={this.state.customerDetails.data.country} onChange={this.handleChange} />
+              <FormControl name="country" type="test" value={this.state.customerDetails.data.country} onChange={this.handleChange} />
             </FormGroup>
 
             <FormGroup>
               <Label>Organization:</Label>
-              <FormControl name="organization" type="test" placeholder="Enter email" value={this.state.customerDetails.data.organization} onChange={this.handleChange} />
+              <FormControl name="organization" type="test" value={this.state.customerDetails.data.organization} onChange={this.handleChange} />
             </FormGroup>
 
             <FormGroup>
               <Label>Job Profile:</Label>
-              <FormControl name="jobProfile" type="test" placeholder="Enter email" value={this.state.customerDetails.data.jobProfile} onChange={this.handleChange} />
+              <FormControl name="jobProfile" type="test" value={this.state.customerDetails.data.jobProfile} onChange={this.handleChange} />
             </FormGroup>
 
             <FormGroup>
               <Label>Additional Info:</Label>
-              <FormControl name="additionalInfo" type="test" placeholder="Enter email" value={this.state.customerDetails.data.additionalInfo} onChange={this.handleChange} />
+              <FormControl name="additionalInfo" type="test" value={this.state.customerDetails.data.additionalInfo} onChange={this.handleChange} />
             </FormGroup>
 
           </Form>
