@@ -3,6 +3,7 @@ import Panel from 'react-bootstrap/lib/Panel'
 import Button from 'react-bootstrap/lib/Button'
 import CustomerDetails from './CustomerDetails'
 import axios from 'axios'
+import CONSTANTS from "./constants"
 
 export default class Customers extends Component {
 
@@ -20,7 +21,7 @@ export default class Customers extends Component {
 
   //Function to get the Customer Data from json
   getCustomerData() {
-    axios.get('/api/get').then(response => {
+    axios.get(`${CONSTANTS.API_ROOT}/api/get`).then(response => {
       this.setState({customerList: response})
     })
   };

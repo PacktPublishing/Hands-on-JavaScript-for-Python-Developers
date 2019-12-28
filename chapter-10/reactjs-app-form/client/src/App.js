@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Customers from './Customers'
+import CustomerNew from './CustomerNew'
 import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
-
 
 class App extends Component {
   render() {
@@ -21,6 +21,7 @@ class App extends Component {
                   <Redirect to="/customerlist"/>
                 )}/>
                  <Route exact path='/customerlist' component={Customers} />
+                 <Route exact path='/customer/new' component={CustomerNew} />
           </Switch>
       </div>
     </Router>
