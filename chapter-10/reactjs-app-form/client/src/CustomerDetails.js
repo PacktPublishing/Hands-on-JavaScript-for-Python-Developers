@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Form, FormGroup, FormControl, Label } from "react-bootstrap/lib/"
+import { Card, CardHeader, CardTitle, CardBody, Form, FormGroup, Label, Input } from "reactstrap"
 import CONSTANTS from "./constants"
-import Panel from 'react-bootstrap/lib/Panel'
 import axios from 'axios'
 
 //This Component is a child Component of Customers Component
@@ -50,61 +49,61 @@ export default class CustomerDetails extends Component {
     if (!this.state.customerDetails)
       return (<p>Loading Data</p>)
     return (<div className="customerdetails">
-      <Panel bsStyle="info" className="centeralign">
-        <Panel.Heading>
-          <Panel.Title componentClass="h3">{this.state.customerDetails.data.name}</Panel.Title>
-        </Panel.Heading>
-        <Panel.Body>
+      <Card className="centeralign panel panel-info">
+        <CardHeader className="panel-heading">
+          <CardTitle className="panel-title">{this.state.customerDetails.data.name}</CardTitle>
+        </CardHeader>
+        <CardBody>
 
           <Form>
             <FormGroup>
               <Label>Name:</Label>
-              <FormControl name="name" type="text" value={this.state.customerDetails.data.name} onChange={this.handleChange} />
+              <Input name="name" type="text" value={this.state.customerDetails.data.name} onChange={this.handleChange} />
             </FormGroup>
 
             <FormGroup>
               <Label>Email:</Label>
-              <FormControl name="email" type="email" value={this.state.customerDetails.data.email} onChange={this.handleChange} />
+              <Input name="email" type="email" value={this.state.customerDetails.data.email} onChange={this.handleChange} />
             </FormGroup>
 
             <FormGroup>
               <Label>Phone:</Label>
-              <FormControl name="phone" type="number" value={this.state.customerDetails.data.phone} onChange={this.handleChange} />
+              <Input name="phone" type="number" value={this.state.customerDetails.data.phone} onChange={this.handleChange} />
             </FormGroup>
 
             <FormGroup>
               <Label>City:</Label>
-              <FormControl name="city" type="text" value={this.state.customerDetails.data.city} onChange={this.handleChange} />
+              <Input name="city" type="text" value={this.state.customerDetails.data.city} onChange={this.handleChange} />
             </FormGroup>
 
             <FormGroup>
               <Label>State:</Label>
-              <FormControl name="state" type="text" value={this.state.customerDetails.data.state} onChange={this.handleChange} />
+              <Input name="state" type="text" value={this.state.customerDetails.data.state} onChange={this.handleChange} />
             </FormGroup>
 
             <FormGroup>
               <Label>Country:</Label>
-              <FormControl name="country" type="test" value={this.state.customerDetails.data.country} onChange={this.handleChange} />
+              <Input name="country" type="test" value={this.state.customerDetails.data.country} onChange={this.handleChange} />
             </FormGroup>
 
             <FormGroup>
               <Label>Organization:</Label>
-              <FormControl name="organization" type="test" value={this.state.customerDetails.data.organization} onChange={this.handleChange} />
+              <Input name="organization" type="test" value={this.state.customerDetails.data.organization} onChange={this.handleChange} />
             </FormGroup>
 
             <FormGroup>
               <Label>Job Profile:</Label>
-              <FormControl name="jobProfile" type="test" value={this.state.customerDetails.data.jobProfile} onChange={this.handleChange} />
+              <Input name="jobProfile" type="test" value={this.state.customerDetails.data.jobProfile} onChange={this.handleChange} />
             </FormGroup>
 
             <FormGroup>
               <Label>Additional Info:</Label>
-              <FormControl name="additionalInfo" type="test" value={this.state.customerDetails.data.additionalInfo} onChange={this.handleChange} />
+              <Input name="additionalInfo" type="test" value={this.state.customerDetails.data.additionalInfo} onChange={this.handleChange} />
             </FormGroup>
 
           </Form>
-        </Panel.Body>
-      </Panel>
+        </CardBody>
+      </Card>
     </div>)
   }
 }

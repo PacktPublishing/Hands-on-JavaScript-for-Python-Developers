@@ -7,10 +7,10 @@
     "axios": "^0.18.1",
     "bootstrap": "^3.4.1",
     "react": "^16.4.1",
-    "react-bootstrap": "^0.32.4",
     "react-dom": "^16.12.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
+    "react-scripts": "^3.3.0",
+    "reactstrap": "^8.2.0",
     "uuid": "^3.3.3"
   },
   "scripts": {
@@ -23,5 +23,17 @@
   },
   "devDependencies": {
     "gh-pages": "^1.2.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

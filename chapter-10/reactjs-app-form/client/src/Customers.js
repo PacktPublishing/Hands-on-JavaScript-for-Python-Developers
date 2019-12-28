@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import Panel from 'react-bootstrap/lib/Panel'
-import Button from 'react-bootstrap/lib/Button'
+import { Card, CardBody, CardTitle, CardHeader, Button } from 'reactstrap'
 import CustomerDetails from './CustomerDetails'
 import axios from 'axios'
 import CONSTANTS from "./constants"
@@ -29,25 +28,25 @@ export default class Customers extends Component {
   render() {
     if (!this.state.customerList)
       return (<p>Loading data</p>)
-    return (<div className="addmargin">
+    return (<div>
       <div className="col-md-3">
         {
 
-          this.state.customerList.data.map(customer => <Panel bsStyle="info" key={customer.name} className="centeralign">
-            <Panel.Heading>
-              <Panel.Title componentClass="h3">{customer.name}</Panel.Title>
-            </Panel.Heading>
-            <Panel.Body>
+          this.state.customerList.data.map(customer => <Card className="panel panel-info" key={customer.name}>
+            <CardHeader className="panel-heading">
+              <CardTitle className="panel-title">{customer.name}</CardTitle>
+            </CardHeader>
+            <CardBody className="panel-body">
               <p>{customer.email}</p>
               <p>{customer.phone}</p>
-              <Button bsStyle="info" onClick={() => this.setState({selectedCustomer: customer.id})}>
+              <Button className="btn btn-info" onClick={() => this.setState({selectedCustomer: customer.id})}>
 
                 Click to View Details
 
               </Button>
 
-            </Panel.Body>
-          </Panel>)
+            </CardBody>
+          </Card>)
         }
       </div>
       <div className="col-md-6">

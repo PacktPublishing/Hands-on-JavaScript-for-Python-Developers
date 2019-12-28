@@ -21,8 +21,9 @@ app.get('/api/get/:id', (req, res) => {
 
   if (!fs.existsSync(file)) {
     res.json({});
-  } 
-  res.json(JSON.parse(fs.readFileSync(file, "utf8")));
+  } else {
+    res.json(JSON.parse(fs.readFileSync(file, "utf8")));
+  }
 });
 
 app.post('/api/save/:id', (req, res) => {
