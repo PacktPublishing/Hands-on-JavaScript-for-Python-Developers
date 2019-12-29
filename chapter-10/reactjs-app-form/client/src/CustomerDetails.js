@@ -68,7 +68,6 @@ export default class CustomerDetails extends Component {
     this.validate(event.target)
 
     this.setState({ customerDetails: details })
-    console.log(this.state.customerDetails)
 
     axios.post(`${CONSTANTS.API_ROOT}/api/save/` + this.state.customerDetails.data.id, details)
       .then(() => {

@@ -78,7 +78,11 @@ console.log(customer.id)
 
 // Handles any requests that don't match the ones above
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/client/build/index.html'));
+  if ((/js|css|ico|json/).test(req.params["0"])) {
+    res.sendFile(path.join(__dirname + req.params["0"].replace("customer","client/build")));
+  } else {
+    res.sendFile(path.join(__dirname + `/client/build/index.html`));
+  }
 });
 
 const port = process.env.PORT || 5000;
