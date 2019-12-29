@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, FormGroup, Input, Label, Card, CardHeader, CardTitle, CardBody } from "reactstrap"
+import { Form, FormGroup, Input, Label, Card, CardHeader, CardTitle, CardBody, Button } from "reactstrap"
 import CONSTANTS from "./constants"
 import axios from 'axios'
 const uuidv4 = require('uuid/v4');
@@ -38,14 +38,12 @@ export default class CustomerNew extends Component {
   getCustomerDetails(id) {
     axios.get(`${CONSTANTS.API_ROOT}/api/get/${id}`).then(response => {
       response.data.id = this.id
-      
       this.setState({ customerDetails: response})
     })
   };
 
   handleChange(event) {
     const details = this.state.customerDetails;
-    console.log('originaldetails',details);
 
     details.data[event.target.name] = event.target.value;
 
@@ -54,17 +52,6 @@ export default class CustomerNew extends Component {
 
     axios.post(`${CONSTANTS.API_ROOT}/api/save/` + details.data.id, details);
   };
-
-  validateEmail(e) {
-    const emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const { validate } = this.state
-    if (emailRex.test(e.target.value)) {
-      validate.emailState = 'has-success'
-    } else {
-      validate.emailState = 'has-danger'
-    }
-    this.setState({ validate })
-  }
 
   render() {
     if (!this.state.customerDetails) {
@@ -132,6 +119,7 @@ export default class CustomerNew extends Component {
               <Input name="additionalInfo" type="text" value={this.state.customerDetails.data.additionalInfo || ''} onChange={this.handleChange} />
             </FormGroup>
 
+            <Button href="/customer/list" className="btn btn-primary">Save and Return</Button>
           </Form>
         </CardBody>
       </Card>

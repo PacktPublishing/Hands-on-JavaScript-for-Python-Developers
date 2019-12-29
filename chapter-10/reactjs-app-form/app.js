@@ -26,6 +26,27 @@ app.get('/api/get/:id', (req, res) => {
   }
 });
 
+app.delete('/api/save/:id', (req, res) => {
+  let file = path.join(__dirname, `public/json/customer${req.params.id}.json`)
+  if (fs.existsSync(file)) {
+    fs.unlinkSync(file);
+
+    const list = JSON.parse(fs.readFileSync(path.join(__dirname, 'public/json/customerlist.json'), "utf8"));
+    for (let i = 0; i < list.length; i++) {
+      if (list[i].id === req.params.id) {
+        list.splice(i,1)
+        break;
+      }
+    };
+
+    fs.writeFileSync(path.join(__dirname, `public/json/customerlist.json`), JSON.stringify(list));
+
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(200);
+  }
+});
+
 app.post('/api/save/:id', (req, res) => {
   fs.writeFileSync(path.join(__dirname, `public/json/customer${req.params.id}.json`), JSON.stringify(req.body.data));
 
@@ -35,14 +56,21 @@ app.post('/api/save/:id', (req, res) => {
     email: req.body.data.email,
     phone: req.body.data.phone
   };
-
   const list = JSON.parse(fs.readFileSync(path.join(__dirname, 'public/json/customerlist.json'), "utf8"));
+console.log(customer.id)
+  let customerFound = false;
   for (let i = 0; i < list.length; i++) {
     if (list[i].id === customer.id) {
       list[i] = customer;
+      customerFound = true;
       break;
     }
   };
+
+  if (!customerFound) {
+    list.push(customer);
+  }
+
   fs.writeFileSync(path.join(__dirname, `public/json/customerlist.json`), JSON.stringify(list));
 
   res.sendStatus(200);

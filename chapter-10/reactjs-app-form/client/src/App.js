@@ -20,6 +20,7 @@ class App extends Component {
                 <Route exact path= "/" render={() => (
                   <Redirect to="/customer/list"/>
                 )}/>
+                 <Route exact path='/customer/' component={Customers} />
                  <Route exact path='/customer/list' component={Customers} />
                  <Route exact path='/customer/new' component={CustomerNew} />
           </Switch>

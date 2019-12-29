@@ -30,3 +30,11 @@
 .card {
   margin-top: 1em;
 }
+
+.form-control.is-valid {
+  border: 1px solid green;
+}
+
+.form-control.is-invalid {
+  border: 1px solid red;
+}
