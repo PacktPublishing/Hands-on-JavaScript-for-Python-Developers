@@ -1,5 +1,5 @@
 const http = require('http')
-const ImageToAscii = require('image-to-ascii')
+const asciify = require('asciify-image')
 const Convert = require('ansi-to-html')
 const convert = new Convert()
 
@@ -17,7 +17,7 @@ body {
 
 http.createServer((req, res) => {
   res.writeHead(200, {'Content-Type': 'text/html'})
-  ImageToAscii(__dirname + '/img/image.jpg', (err, converted) => {
+  asciify(__dirname + '/img/image.jpg', { fit: 'box', width: 25, height: 25 }, (err, converted) => {
     res.write(css)
     res.end(convert.toHtml(err || converted))
   })
