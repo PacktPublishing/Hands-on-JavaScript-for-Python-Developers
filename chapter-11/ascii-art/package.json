@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "image-to-ascii": "^3.0.12"
+    "asciify-image": "^0.1.5"
   },
   "devDependencies": {},
   "scripts": {

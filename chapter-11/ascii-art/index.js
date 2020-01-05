@@ -1,5 +1,5 @@
-const ImageToAscii = require('image-to-ascii')
+const asciify = require('asciify-image')
 
-ImageToAscii(__dirname + '/image.jpg', (err, converted) => {
+asciify(__dirname + '/image.jpg', { fit: 'box', width: 25, height: 25}, (err, converted) => {
   console.log(err || converted)
 })
