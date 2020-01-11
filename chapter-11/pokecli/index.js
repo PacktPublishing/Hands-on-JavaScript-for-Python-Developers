@@ -1,5 +1,4 @@
 const axios = require('axios')
-const inquirer = require('inquirer')
 const asciify = require('asciify-image')
 const term = require('terminal-kit').terminal
 
@@ -10,7 +9,7 @@ function terminate() {
   setTimeout(function () { process.exit() }, 100);
 }
 
-term.on('key', function (name, matches, data) {
+term.on('key', (name, matches, data) => {
   if (name === 'CTRL_C') {
     terminate();
   }
