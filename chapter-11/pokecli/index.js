@@ -1,129 +1,61 @@
 const axios = require('axios')
 const inquirer = require('inquirer')
 const asciify = require('asciify-image')
-const blessed = require('blessed');
+const term = require('terminal-kit').terminal
 
 const pokes = {}
 
-// Create a screen object.
-const screen = blessed.screen({
-  smartCSR: true
-})
+function terminate() {
+  term.grabInput(false);
+  setTimeout(function () { process.exit() }, 100);
+}
 
-// Create a box perfectly centered horizontally and vertically.
-const box = blessed.box({
-  top: 'center',
-  left: 'center',
-  width: '75%',
-  height: '75%',
-  tags: true,
-  shrink: 'grow',
-  style: {
-    fg: 'white',
+term.on('key', function (name, matches, data) {
+  if (name === 'CTRL_C') {
+    terminate();
   }
 })
 
+term.grabInput({ mouse: 'button' });
 
-// Append our box to the screen.
-screen.append(box)
 
-const splashscreen = blessed.ANSIImage({
-  file: __dirname + '/img/pokeapi_256.png',
-  parent: box,
-  width: '100%',
-  height: '100%'
+term.drawImage(__dirname + '/img/pokeapi_256.png', {
+  shrink: {
+    width: term.width,
+    height: term.height * 2
+  }
 })
-
-screen.title = 'Pokéapi!'
-
-// Quit on Escape, q, or Control-C.
-screen.key(['escape', 'q', 'C-c'], function (ch, key) {
-  return process.exit(0);
-})
-
-screen.render()
 
 async function start() {
   const pokemon = await getPokemon()
-  /*  asciify(__dirname + '/img/pokeapi_256.png', { fit: 'box', width: 50 }, async (err, converted) => {
-      console.log(err || converted)
-  */
-  box.destroy()
 
-  const playArea = blessed.box({
-    top: 'center',
-    left: 'center',
-    width: '75%',
-    height: '75%',
-    tags: true,
-    style: {
-      fg: 'white',
-    }
+  term.bold.cyan('Choose your Pokémon!\n')
+
+  term.gridMenu(pokemon.map(mon => mon.name), {}, async (error, response) => {
+    pokes['player'] = pokemon[response.selectedIndex]
+    pokes['computer'] = pokemon[(Math.floor(Math.random() * pokemon.length))]
+    await createPokemon('player')
+    await createPokemon('computer')
+    term(`Your ${pokes['player'].name} is so cute!\n${pokes['player'].img}\n`)
+    term.singleLineMenu( ['Continue'], (error, response) => {
+      term(`\nWould you like to continue against the computer's scary ${pokes['computer'].name}? \n ${pokes['computer'].img}\n`)
+      term.singleLineMenu( ['Yes', 'No'], (error, response) => {
+        term(`${pokes['computer'].name} is already attacking! No time to decide!`)
+      })
+    })
+    
   })
 
-  // const pokeLabel = blessed.text({
-  //   content: "Choose your Pokémon!",
-  //   style: {
-  //     fg: 'white'
-  //   },
-  //   parent: screen
-  // })
-  const pokelist = blessed.list({
-    items: pokemon.map(mon => mon.name),
-    parent: playArea,
-    keys: true,
-    style: {
-      selected: {
-        bg: 'blue',
-        fg: 'white'
-      },
-      item: {
-        bg: 'white',
-        fg: 'blue'
-      },
-      focus: {
-        bg: 'red'
-      }
-    },
-    height: '75%',
-    width: '50%',
-  })
-  // playArea.append(pokeLabel)
-  screen.append(playArea)
-
-  screen.render()
-  /*    let question = {
-        type: "list",
-        name: "POKEMON",
-        message: `Choose your Pokémon!`,
-        choices: pokemon.map(mon => mon.name)
-      }
-  
-      let { POKEMON } = await inquirer.prompt(question)
-  
-      pokes['player'] = pokemon.filter(obj => {
-        return obj.name === POKEMON
-      })[0]
-  
-      pokes['computer'] = pokemon[(Math.floor(Math.random() * pokemon.length))]
-  
-      console.log(`You have chosen ${POKEMON}! The computer's chosen ${pokes.computer.name}.`)
-      console.log("Birthing your Pokémon... please wait...")
-  
-      await createPokemon('player')
-      await createPokemon('computer')
-  
-      play()*/
-  //})
 }
 
 async function play() {
-  console.log(`Player's ${pokes['player'].name}!\n${pokes['player'].img}`)
+  
+
 }
 
 async function getPokemon(person) {
   const pokes = await axios({
-    url: 'https://pokeapi.co/api/v2/pokemon?limit=1000'
+    url: 'https://pokeapi.co/api/v2/pokemon?limit=50'
   })
 
   return pokes.data.results
@@ -182,6 +114,4 @@ async function createPokemon(person) {
   }
 }
 
-setTimeout(() => {
-  start()
-}, 2000)
+start()
