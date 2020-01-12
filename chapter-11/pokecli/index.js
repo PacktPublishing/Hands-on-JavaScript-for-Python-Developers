@@ -42,9 +42,7 @@ async function start() {
         term(`${pokes['computer'].name} is already attacking! No time to decide!`)
       })
     })
-    
   })
-
 }
 
 async function play() {
@@ -52,7 +50,7 @@ async function play() {
 
 }
 
-async function getPokemon(person) {
+async function getPokemon() {
   const pokes = await axios({
     url: 'https://pokeapi.co/api/v2/pokemon?limit=50'
   })
