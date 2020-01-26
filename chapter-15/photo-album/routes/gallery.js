@@ -6,7 +6,11 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   fs.readdir(`${__dirname}/../public/images`, (err, files) => {
       if (err) {
-        res.json(JSON.stringify(err));
+        res.json({
+          path: '',
+          files: []
+        });
+        return;
       }
 
       const data = {
