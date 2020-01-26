@@ -6,4 +6,11 @@ li {
 
 img {
   width: 400px;
+  padding: 2px;
+}
+
+img:hover {
+  border: 2px solid #f00;
+  padding: 0;
+  cursor: pointer;
 }
