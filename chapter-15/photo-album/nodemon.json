@@ -1,9 +1,0 @@
-{
-  "restartable": "rs",
-  "ignore": [
-    ".git",
-    "node_modules/**/node_modules"
-  ],
-  "verbose": true,
-  "ext": "js,json,html,css,hbs"
-}
