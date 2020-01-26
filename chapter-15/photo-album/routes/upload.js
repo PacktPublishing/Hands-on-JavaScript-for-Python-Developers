@@ -8,6 +8,9 @@ router.post('/', (req, res, next) => {
     .on('fileBegin', (name, file) => {
       file.path = __dirname + '/../public/images/' + file.name
     })
+    .on('file', () => {
+      res.sendStatus(200)
+    })
 });
 
 module.exports = router;

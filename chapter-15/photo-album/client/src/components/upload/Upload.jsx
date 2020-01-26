@@ -21,6 +21,9 @@ class Upload extends React.Component {
       method: 'POST',
       body: formData
     })
+    .then(() => {
+      this.props.reload()
+    })
   }
   
   render() {

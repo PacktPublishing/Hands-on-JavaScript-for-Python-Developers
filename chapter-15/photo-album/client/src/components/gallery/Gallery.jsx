@@ -1,5 +1,6 @@
 import React from 'react'
 import './Gallery.css'
+import Upload from '../upload/Upload'
 
 class Gallery extends React.Component {
   constructor(props) {
@@ -9,9 +10,16 @@ class Gallery extends React.Component {
       path: '',
       error: null
     }
+
+    this.delete = this.delete.bind(this)
+    this.get = this.get.bind(this)
   }
 
   componentDidMount() {
+   this.get() 
+  }
+
+  get() {
     fetch("http://localhost:3000/gallery")
       .then(res => res.json())
       .then((result) => {
@@ -29,6 +37,15 @@ class Gallery extends React.Component {
         })
   }
 
+  delete(e) {
+    fetch(`http://localhost:3000/gallery/${e.target.id}`, {
+      method: 'DELETE'
+    })
+      .then(() => {
+        this.componentDidMount()
+      })
+  }
+
   render() {
     const { error, files, path } = this.state
 
@@ -38,12 +55,14 @@ class Gallery extends React.Component {
 
     return (
       <>
+        <Upload reload={this.get}/>
+
         {
           files.length > 0 ? (
 
             <ul>
               {files.map(file => (
-                <li key={file}><img src={path + file} alt="" /></li>
+                <li key={file}><img id={file} src={path + file} alt="" onClick={this.delete} /></li>
               ))}
             </ul>
           ) : <p>No photos</p>
