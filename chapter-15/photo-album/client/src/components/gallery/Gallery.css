@@ -3,3 +3,7 @@ li {
   display: inline;
   margin-right: 1em;
 }
+
+img {
+  width: 400px;
+}

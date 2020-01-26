@@ -2,8 +2,8 @@ import React from 'react'
 import './Upload.css'
 
 class Upload extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.uploadForm = this.uploadForm.bind(this)
   }
 

@@ -15,6 +15,7 @@ class Gallery extends React.Component {
     fetch("http://localhost:3000/gallery")
       .then(res => res.json())
       .then((result) => {
+        console.log(result)
         this.setState({
           files: result.files,
           path: result.path

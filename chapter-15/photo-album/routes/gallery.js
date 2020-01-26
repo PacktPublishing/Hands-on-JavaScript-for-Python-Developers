@@ -15,10 +15,9 @@ router.get('/', function(req, res, next) {
 
       const data = {
         path: 'images/',
-        files: files
+        files: files.splice(1,files.length) // remove the .gitignore
       };
-
-      res.json(JSON.stringify(data));
+      res.json(data);
   });
 
 });
