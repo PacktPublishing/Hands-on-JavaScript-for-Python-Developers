@@ -7,8 +7,14 @@ http.get(`http://api.edamam.com/search?app_id=${process.env.APPLICATION_ID}&app_
 
   res.setEncoding('utf8')
   
+  let chunks = ''
+
   res.on("data", (chunk) => {
-    console.log(chunk)
+    chunks += chunk
+  })
+
+  res.on("end", () => {
+    console.log(JSON.parse(chunks))
   })
 }).on('error', (e) => {
   console.log("Got error: " + e.message);
