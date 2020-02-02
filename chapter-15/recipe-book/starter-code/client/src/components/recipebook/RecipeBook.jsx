@@ -11,6 +11,18 @@ export default class RecipeBook extends React.Component {
     }
 
     this.handleSearchResults = this.handleSearchResults.bind(this)
+    this.refresh = this.refresh.bind(this)
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3000/recipes')
+      .then(data => data.json())
+      .then( (json) => {
+        console.log(json)
+        this.setState({
+          savedRecipes: json
+        })
+      })
   }
 
   handleSearchResults(data) {
@@ -31,6 +43,12 @@ export default class RecipeBook extends React.Component {
     })
   }
 
+  refresh(data) {
+    this.setState({
+      savedRecipes: data
+    })
+  }
+
   render() {
     const { recipes, savedRecipes } = this.state
 
@@ -39,10 +57,23 @@ export default class RecipeBook extends React.Component {
         <Search handleSearchResults={this.handleSearchResults} />
         {
           recipes.length > 0 ? (
-            recipes.map((recipe, i) => (
-              <Recipe recipe={recipe} key={i} />
-            ))
+            <>
+              <p>Search Results</p>
+              {
+                recipes.map((recipe, i) => (
+                  <Recipe recipe={recipe} key={i} search="true" refresh={this.refresh} />
+                ))
+              }
+            </>
           ) : <p></p>
+        }
+        <h3>Saved Recipes</h3> 
+        {
+          savedRecipes.length > 0 ? (
+            savedRecipes.map((recipe, i) => (
+              <Recipe recipe={recipe[Object.keys(recipe)]} key={i} />
+            ))
+          ) : <p>No saved Recipes</p>
         }
       </>
     )

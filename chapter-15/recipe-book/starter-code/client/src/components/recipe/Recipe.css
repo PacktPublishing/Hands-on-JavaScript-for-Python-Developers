@@ -1,0 +1,8 @@
+.card {
+  display: inline;
+  margin: 2em;
+}
+
+.button-saved {
+  display: none;
+}
