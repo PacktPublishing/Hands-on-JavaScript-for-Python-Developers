@@ -1,8 +1,7 @@
 .card {
-  display: inline;
-  margin: 2em;
-}
-
-.button-saved {
-  display: none;
-}
+  float: left;
+  width: 25%;
+  font-size: 10px;
+  display: 'flex';
+  flex-direction: 'row'
+;}

@@ -1,6 +1,7 @@
 import React from 'react'
 import Search from '../search/Search'
 import Recipe from '../recipe/Recipe'
+import { Container, Row, Col } from 'react-bootstrap'
 
 export default class RecipeBook extends React.Component {
   constructor() {
@@ -18,7 +19,6 @@ export default class RecipeBook extends React.Component {
     fetch('http://localhost:3000/recipes')
       .then(data => data.json())
       .then( (json) => {
-        console.log(json)
         this.setState({
           savedRecipes: json
         })
@@ -54,27 +54,45 @@ export default class RecipeBook extends React.Component {
 
     return (
       <>
-        <Search handleSearchResults={this.handleSearchResults} />
-        {
-          recipes.length > 0 ? (
-            <>
-              <p>Search Results</p>
+        <h1>Recipe Book</h1>
+        <Container>
+          <Row>
+            <Col>
+              <Search handleSearchResults={this.handleSearchResults} />
+
               {
-                recipes.map((recipe, i) => (
-                  <Recipe recipe={recipe} key={i} search="true" refresh={this.refresh} />
-                ))
+                recipes.length > 0 ? (
+                  <>
+                    <p>Search Results</p>
+                    <div className="card-columns">
+                      {
+                        recipes.map((recipe, i) => (
+                          <Recipe recipe={recipe} key={i} search="true" refresh={this.refresh} />
+                        ))
+                      }
+                    </div>
+                  </>
+                ) : <p></p>
               }
-            </>
-          ) : <p></p>
-        }
-        <h3>Saved Recipes</h3> 
-        {
-          savedRecipes.length > 0 ? (
-            savedRecipes.map((recipe, i) => (
-              <Recipe recipe={recipe[Object.keys(recipe)]} key={i} />
-            ))
-          ) : <p>No saved Recipes</p>
-        }
+            </Col>
+            <Col>
+              <h3>Saved Recipes</h3> 
+              <div className="card-columns">
+                {
+                  savedRecipes.length > 0 ? (
+                    savedRecipes.map((recipe, i) => (
+                      <Recipe recipe={recipe[Object.keys(recipe)]} key={i} />
+                    ))
+                  ) : <p>No saved Recipes</p>
+                }
+              </div>
+            </Col>
+          </Row>
+
+        </Container>
+        
+        
+        
       </>
     )
   }

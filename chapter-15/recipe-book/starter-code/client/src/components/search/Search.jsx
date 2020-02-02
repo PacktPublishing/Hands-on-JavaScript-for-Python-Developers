@@ -1,4 +1,7 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button'
+
+import './Search.css'
 
 class Search extends React.Component {
   constructor() {
@@ -19,8 +22,8 @@ class Search extends React.Component {
 
   render() {
     return (
-      <h2>Search for: <input type="text" id="searchTerm" />
-      <button onClick={this.submitSearch}>Search!</button></h2>
+      <h3>Search for: <input type="text" id="searchTerm" />
+      <Button onClick={this.submitSearch}>Search!</Button></h3>
     )
   }
 }

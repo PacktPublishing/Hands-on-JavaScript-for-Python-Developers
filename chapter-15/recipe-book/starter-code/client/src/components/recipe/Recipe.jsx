@@ -1,5 +1,5 @@
 import React from 'react'
-import './Recipe.css'
+import { Button, Card } from 'react-bootstrap'
 
 export default class Recipe extends React.Component {
   constructor() {
@@ -28,17 +28,16 @@ export default class Recipe extends React.Component {
 
   render() {
     const { recipe } = this.props
-    console.log(recipe)
 
     return (
-      <div className="card">
-        <img src={recipe.image} className="card-img-top" alt={recipe.title} />
-        <div className="card-body">
-          <h5 className="card-title">{recipe.title}</h5>
-          <a href={recipe.url} className="btn btn-primary" target="_blank">See Recipe</a>
-          {this.props.search && <a className="btn btn-primary" onClick={this.save}>Add to Box</a>}
-        </div>
-      </div>
+      <Card>
+        <Card.Img variant="top" src={recipe.image} alt={recipe.title} />
+        <Card.Body>
+          <Card.Title>{recipe.title}</Card.Title>
+          <Button variant="primary" data-url={recipe.url}>See Recipe</Button>
+          {this.props.search && <Button variant="secondary" onClick={this.save}>Add to Book</Button>}
+        </Card.Body>
+      </Card>
     )
   }
 }
