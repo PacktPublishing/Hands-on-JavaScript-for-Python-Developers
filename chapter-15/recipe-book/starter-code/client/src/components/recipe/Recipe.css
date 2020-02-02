@@ -1,7 +1,12 @@
-.card {
-  float: left;
-  width: 25%;
-  font-size: 10px;
-  display: 'flex';
-  flex-direction: 'row'
-;}
+.card-columns .card {
+  width: 75%;
+}
+
+.card-title.h5 {
+  font-size: 14px;
+}
+
+.btn {
+  margin: 10px;
+  width: 115px;
+}

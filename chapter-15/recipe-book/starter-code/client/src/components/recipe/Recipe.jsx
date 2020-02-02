@@ -1,6 +1,8 @@
 import React from 'react'
 import { Button, Card } from 'react-bootstrap'
 
+import './Recipe.css'
+
 export default class Recipe extends React.Component {
   constructor() {
     super();
