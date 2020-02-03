@@ -1,7 +1,7 @@
 import React from 'react'
 import Search from '../search/Search'
 import Recipe from '../recipe/Recipe'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Tabs, Tab } from 'react-bootstrap'
 
 export default class RecipeBook extends React.Component {
   constructor() {
@@ -55,40 +55,39 @@ export default class RecipeBook extends React.Component {
     return (
       <>
         <h1>Recipe Book</h1>
-        <Container>
-          <Row>
-            <Col>
-              <Search handleSearchResults={this.handleSearchResults} />
 
+        <Tabs defaultActiveKey="recipes" id="recipebook">
+          <Tab eventKey="recipes" title="Saved Recipes">
+            <h3>Saved Recipes</h3> 
+            <div className="card-columns">
               {
-                recipes.length > 0 ? (
-                  <>
-                    <p>Search Results</p>
-                    <div className="card-columns">
-                      {
-                        recipes.map((recipe, i) => (
-                          <Recipe recipe={recipe} key={i} search="true" refresh={this.refresh} />
-                        ))
-                      }
-                    </div>
-                  </>
-                ) : <p></p>
+                savedRecipes.length > 0 ? (
+                  savedRecipes.map((recipe, i) => (
+                    <Recipe recipe={recipe[Object.keys(recipe)]} key={i} />
+                  ))
+                ) : <p>No saved Recipes</p>
               }
-            </Col>
-            <Col>
-              <h3>Saved Recipes</h3> 
-              <div className="card-columns">
-                {
-                  savedRecipes.length > 0 ? (
-                    savedRecipes.map((recipe, i) => (
-                      <Recipe recipe={recipe[Object.keys(recipe)]} key={i} />
-                    ))
-                  ) : <p>No saved Recipes</p>
-                }
-              </div>
-            </Col>
-          </Row>
-        </Container>
+            </div>
+          </Tab>
+          <Tab eventKey="search" title="Search">
+            <Search handleSearchResults={this.handleSearchResults} />
+
+            {
+              recipes.length > 0 ? (
+                <>
+                  <p>Search Results</p>
+                  <div className="card-columns">
+                    {
+                      recipes.map((recipe, i) => (
+                        <Recipe recipe={recipe} key={i} search="true" refresh={this.refresh} />
+                      ))
+                    }
+                  </div>
+                </>
+              ) : <p></p>
+            }
+          </Tab>
+        </Tabs>
       </>
     )
   }
