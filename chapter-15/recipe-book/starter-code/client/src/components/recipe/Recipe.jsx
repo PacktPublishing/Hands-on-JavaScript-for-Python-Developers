@@ -28,6 +28,10 @@ export default class Recipe extends React.Component {
     })
   }
 
+  openRecipe(e) {
+    window.open(e.target.dataset.url)
+  }
+
   render() {
     const { recipe } = this.props
 
@@ -36,7 +40,7 @@ export default class Recipe extends React.Component {
         <Card.Img variant="top" src={recipe.image} alt={recipe.title} />
         <Card.Body>
           <Card.Title>{recipe.title}</Card.Title>
-          <Button variant="primary" data-url={recipe.url}>See Recipe</Button>
+          <Button variant="primary" data-url={recipe.url} onClick={this.openRecipe}>See Recipe</Button>
           {this.props.search && <Button variant="secondary" onClick={this.save}>Add to Book</Button>}
         </Card.Body>
       </Card>
