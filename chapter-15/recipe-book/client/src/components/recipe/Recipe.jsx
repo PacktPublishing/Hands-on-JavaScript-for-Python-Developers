@@ -23,7 +23,7 @@ export default class Recipe extends React.Component {
       body: JSON.stringify(recipe)
     })
     .then(json => json.json())
-    .then( (data) => {
+    .then((data) => {
       this.props.refresh(data)
     })
   }
