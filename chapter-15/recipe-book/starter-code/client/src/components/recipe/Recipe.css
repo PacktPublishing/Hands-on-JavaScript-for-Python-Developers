@@ -10,3 +10,7 @@
   margin: 10px;
   width: 115px;
 }
+
+.card-body {
+  padding: 10px;
+}

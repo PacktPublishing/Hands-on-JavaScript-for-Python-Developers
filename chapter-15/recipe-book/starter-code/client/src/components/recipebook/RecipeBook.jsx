@@ -88,11 +88,7 @@ export default class RecipeBook extends React.Component {
               </div>
             </Col>
           </Row>
-
         </Container>
-        
-        
-        
       </>
     )
   }
