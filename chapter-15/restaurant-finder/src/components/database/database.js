@@ -1,7 +1,5 @@
 import * as firebase from 'firebase'
 
-console.log('url', process.env.REACT_APP_databaseURL)
-
 const app = firebase.initializeApp({ 
   apiKey: process.env.REACT_APP_apiKey,
   authDomain: process.env.REACT_APP_authDomain,
@@ -13,11 +11,5 @@ const app = firebase.initializeApp({
 })
 
 const Database = app.database()
-
-// // const data = {
-// //   helloworld: 'hello world!'
-// // }
-
-// // database.ref('test').set(data);
 
 export default Database
