@@ -8,11 +8,8 @@ const port = 3001;
 
 const client = yelp.client(process.env.YELP_API_Key);
 
-
 const server = http.createServer((req, res) => {
   const { lat, lng, value } = url.parse(req.url, true).query
-
-  console.log(lat, lng, value)
 
   client.search({
     term: value,
