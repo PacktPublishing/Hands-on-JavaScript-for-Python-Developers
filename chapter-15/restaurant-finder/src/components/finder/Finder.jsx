@@ -2,15 +2,42 @@ import React from 'react'
 import Database from '../database/database'
 import { Tabs, Tab } from 'react-bootstrap'
 import Search from '../search/Search'
+import Restaurant from '../restaurant/Restaurant'
 
 export default class Finder extends React.Component {
   constructor() {
     super()
 
-    this.Database = Database
+    this.state = {
+      restaurants: []
+    }
+
+    this.getRestaurants = this.getRestaurants.bind(this)
+  }
+
+  componentDidMount() {
+    this.getRestaurants()
+  }
+
+  getRestaurants() {
+
+    Database.ref('/restaurants').on('value', (snapshot) => {
+      const restaurants = []
+
+      const data = snapshot.val()
+
+      for(let restaurant in data) {
+        restaurants.push(data[restaurant])
+      }
+      this.setState({
+        restaurants: restaurants
+      })
+    })
   }
 
   render() {
+    
+    const { restaurants } = this.state
     return (
       <>
         <h1>Let's find some restaurants!</h1>
@@ -20,15 +47,15 @@ export default class Finder extends React.Component {
             <Search handleSearchResults={this.handleSearchResults} />
           </Tab>
           <Tab eventKey="saved" title="Saved!">
-            {/* <div className="card-columns">
+            <div className="card-columns">
               {
-                savedRecipes.length > 0 ? (
-                  savedRecipes.map((recipe, i) => (
-                    <Recipe recipe={recipe[Object.keys(recipe)]} key={i} />
+                restaurants.length > 0 ? (
+                  restaurants.map((restaurant, i) => (
+                    <Restaurant restaurant={restaurant} saved={true} key={i} />
                   ))
-                ) : <p>No saved Recipes</p>
+                ) : <p>No saved restaurants</p>
               }
-            </div> */}
+            </div>
           </Tab>
         </Tabs>
       </>

@@ -15,21 +15,23 @@ export default class Restaurant extends React.Component {
   saveRestaurant(e) {
     const { restaurant } = this.props
 
-    Database.ref(`/restaurants/${restaurant.name}`).set({
-      restaurant
+    console.log(restaurant)
+
+    Database.ref(`/restaurants/${restaurant.id}`).set({
+      ...restaurant
     })
   }
 
   render() {
     const { restaurant } = this.props
 
-
+    console.log(restaurant)
     return (
       <Card>
         <Card.Img variant="top" src={restaurant.image_url} alt={restaurant.name} />
         <Card.Body>
           <Card.Title>{restaurant.name}</Card.Title>
-          <Button variant="primary" onClick={this.saveRestaurant}>Save Restaurant</Button>
+          {!this.props.saved && <Button variant="primary" onClick={this.saveRestaurant}>Save Restaurant</Button>}
        </Card.Body>
       </Card>
     )
