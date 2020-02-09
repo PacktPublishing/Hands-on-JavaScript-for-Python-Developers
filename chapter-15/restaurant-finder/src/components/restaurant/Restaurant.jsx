@@ -15,8 +15,6 @@ export default class Restaurant extends React.Component {
   saveRestaurant(e) {
     const { restaurant } = this.props
 
-    console.log(restaurant)
-
     Database.ref(`/restaurants/${restaurant.id}`).set({
       ...restaurant
     })
@@ -25,7 +23,6 @@ export default class Restaurant extends React.Component {
   render() {
     const { restaurant } = this.props
 
-    console.log(restaurant)
     return (
       <Card>
         <Card.Img variant="top" src={restaurant.image_url} alt={restaurant.name} />

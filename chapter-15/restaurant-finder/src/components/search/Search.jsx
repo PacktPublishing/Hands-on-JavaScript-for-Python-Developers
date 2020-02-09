@@ -51,7 +51,6 @@ export default class Search extends React.Component {
 
   render() {
     const { businesses } = this.state
-    console.log(businesses)
 
     return (
       <>
