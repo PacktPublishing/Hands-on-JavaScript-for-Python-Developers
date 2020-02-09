@@ -12,11 +12,13 @@ const client = yelp.client(process.env.YELP_API_Key);
 const server = http.createServer((req, res) => {
   const { lat, lng, value } = url.parse(req.url, true).query
 
+  console.log(lat, lng, value)
+
   client.search({
-    term: 'restaurant',
+    term: value,
     latitude: lat,
     longitude: lng,
-    categories: value
+    categories: 'Restaurants'
   }).then(response => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');

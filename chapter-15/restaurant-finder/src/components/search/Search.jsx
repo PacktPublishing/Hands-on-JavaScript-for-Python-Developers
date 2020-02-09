@@ -38,7 +38,7 @@ export default class Search extends React.Component {
   search(event) {
     const { lng, lat, val } = this.state
 
-    fetch(`http://localhost:3000/search?categories=${val}&lat=${lat}&lng=${lng}`)
+    fetch(`http://localhost:3000/businesses/search?value=${val}&lat=${lat}&lng=${lng}`)
       .then(data => data.json())
       .then(data => this.handleSearchResults(data))
   }
