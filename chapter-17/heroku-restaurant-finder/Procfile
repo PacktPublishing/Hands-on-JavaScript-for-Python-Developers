@@ -1,0 +1,2 @@
+api: node api/api.js
+web: npm start
