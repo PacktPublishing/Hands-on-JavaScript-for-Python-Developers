@@ -20,8 +20,9 @@ export default class Finder extends React.Component {
   }
 
   getRestaurants() {
+    const { user } = this.props
 
-    Database.ref('/restaurants').on('value', (snapshot) => {
+    Database.ref(`/restaurants/${user.uid}`).on('value', (snapshot) => {
       const restaurants = []
 
       const data = snapshot.val()
@@ -36,7 +37,7 @@ export default class Finder extends React.Component {
   }
 
   render() {
-    
+    const { user } = this.props
     const { restaurants } = this.state
     return (
       <>
@@ -44,14 +45,14 @@ export default class Finder extends React.Component {
 
         <Tabs defaultActiveKey="search" id="restaurantsearch">
           <Tab eventKey="search" title="Search!">
-            <Search handleSearchResults={this.handleSearchResults} />
+            <Search handleSearchResults={this.handleSearchResults} user={user}/>
           </Tab>
           <Tab eventKey="saved" title="Saved!">
             <div className="card-columns">
               {
                 restaurants.length > 0 ? (
                   restaurants.map((restaurant, i) => (
-                    <Restaurant restaurant={restaurant} saved={true} key={i} />
+                    <Restaurant restaurant={restaurant} saved={true} key={i} user={user} />
                   ))
                 ) : <p>No saved restaurants</p>
               }

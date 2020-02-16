@@ -10,6 +10,7 @@
     "firebase": "^7.8.1",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
+    "react-cookies": "^0.1.1",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.1",
     "yelp-fusion": "^3.0.0"

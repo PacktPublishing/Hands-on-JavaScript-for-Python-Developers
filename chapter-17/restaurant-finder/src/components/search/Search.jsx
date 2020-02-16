@@ -51,6 +51,7 @@ export default class Search extends React.Component {
 
   render() {
     const { businesses } = this.state
+    const { user } = this.props
 
     return (
       <>
@@ -59,7 +60,7 @@ export default class Search extends React.Component {
           {
             businesses.length > 0 ? (
               businesses.map((restaurant, i) => (
-                <Restaurant restaurant={restaurant} key={i} />
+                <Restaurant restaurant={restaurant} key={i} user={user}/>
               ))
             ) : <p>No results</p>
           }

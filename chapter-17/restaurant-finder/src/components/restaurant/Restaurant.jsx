@@ -13,9 +13,9 @@ export default class Restaurant extends React.Component {
 
 
   saveRestaurant(e) {
-    const { restaurant } = this.props
+    const { restaurant, user } = this.props
 
-    Database.ref(`/restaurants/${restaurant.id}`).set({
+    Database.ref(`/restaurants/${user.uid}/${restaurant.id}`).set({
       ...restaurant
     })
   }
