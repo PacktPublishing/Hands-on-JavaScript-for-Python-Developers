@@ -4,7 +4,7 @@ const url = require('url');
 require('dotenv').config();
 
 const hostname = 'localhost';
-const port = 3001;
+const port = 3000;
 
 const client = yelp.client(process.env.YELP_API_Key);
 
@@ -19,6 +19,7 @@ const server = http.createServer((req, res) => {
   }).then(response => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     res.write(response.body);
     res.end();
