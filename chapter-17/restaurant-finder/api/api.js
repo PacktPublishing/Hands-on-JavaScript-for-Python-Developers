@@ -1,15 +1,19 @@
 const yelp = require('yelp-fusion');
-const http = require('http');
-const url = require('url');
+const express = require('express');
+const path = require('path');
+
+const app = express();
+
 require('dotenv').config();
 
-const hostname = 'localhost';
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
 const client = yelp.client(process.env.YELP_API_Key);
 
-const server = http.createServer((req, res) => {
-  const { lat, lng, value } = url.parse(req.url, true).query
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+app.get('/search', (req, res) => {
+  const { lat, lng, value } = req.query
 
   client.search({
     term: value,
@@ -25,10 +29,12 @@ const server = http.createServer((req, res) => {
     res.end();
   })
     .catch(e => {
-      console.error('error',e)
+      console.error('error', e)
     })
-  });
+});
 
-  server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
-  });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '../client/build/index.html'));
+});
+
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
