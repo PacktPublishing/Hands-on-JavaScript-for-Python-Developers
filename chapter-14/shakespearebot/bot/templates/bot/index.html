@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <style>
+    textarea {
+      height: 500px;
+      width: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <form method="POST" type="" id="chat">
+    <input type="text" id="chattext"></textarea>
+    <button id="submit">Chat</button>
+    <textarea id="chatresponse"></textarea>
+  </form>
+
+  <script>
+    document.getElementById('submit').addEventListener('click', (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+
+      let term = document.getElementById('chattext').value.split(' ')
+      term = term[term.length - 2] || term[0]
+
+      fetch("/api", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ chattext: term })
+      })
+        .then(response => response.text())
+        .then(data => document.querySelector('#chatresponse').value += `\n${data}\n`)
+    })
+  </script>
+</body>
+
+</html>
