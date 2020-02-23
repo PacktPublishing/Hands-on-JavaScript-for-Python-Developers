@@ -6,10 +6,13 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <ChatPanel />
-      <TalkingHeadLayout />
-    </div>
+    <>
+      <h1>Banter with the Bard</h1>
+      <div className="App">
+        <ChatPanel />
+        <TalkingHeadLayout />
+      </div>
+    </>
   );
 }
 
