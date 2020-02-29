@@ -21,7 +21,6 @@
   <script>
     document.getElementById('submit').addEventListener('click', (e) => {
       e.preventDefault()
-      e.stopPropagation()
 
       let term = document.getElementById('chattext').value.split(' ')
       term = term[term.length - 2] || term[0]
