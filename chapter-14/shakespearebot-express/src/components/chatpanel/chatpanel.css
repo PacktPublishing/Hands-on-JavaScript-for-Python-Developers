@@ -16,23 +16,6 @@ body {
   } 
 }
 
-#talkinghead {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-
-.prompt {
-  position: relative;
-  font-size: 24px;
-  position: absolute;
-  top: 235px;
-  left: 50px;
-  text-align: center;
-  width: 400px;
-  color: #8B4513;
-}
-
 .user {
   margin: 20px;
 }

@@ -1,38 +1,30 @@
 const express = require('express');
 const path = require('path');
+const sqlite3 = require('sqlite3').verbose()
+
+const db = new sqlite3.Database(path.join(__dirname, '../shakespeare.sqlite'))
 
 const app = express();
 
-require('dotenv').config();
-
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 
-app.use(express.static(path.join(__dirname, '../build')));
-/*
-app.get('/search', (req, res) => {
-  const { lat, lng, value } = req.query
+app.get('/speak', (req, res) => {
+  db.serialize(() => {
+    if (req.query.question.length === 0) {
+      res.send([{ PlainText: "Get thee to a nunnery!" }])
+      return
+    }
+    db.all(`SELECT PlainText FROM shakespeare_text WHERE PlainText LIKE '%${req.query.question}%' LIMIT 1`, (err, data) => {
+      if (data.length === 0) {
+        res.send("Get thee to a nunnery!")
+        return
+      }
 
-  client.search({
-    term: value,
-    latitude: lat,
-    longitude: lng,
-    categories: 'Restaurants'
-  }).then(response => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Access-Control-Allow-Origin', '*');
-
-    res.write(response.body);
-    res.end();
-  })
-    .catch(e => {
-      console.error('error', e)
+      res.send(data[Math.round(Math.random()*data.length)-1].PlainText.replace(/\n/g, ''))
     })
-});
-*/
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '../build/index.html'));
+  })
+
 });
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

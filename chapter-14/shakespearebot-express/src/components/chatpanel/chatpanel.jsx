@@ -10,11 +10,11 @@ export default class ChatPanel extends React.Component {
         <div className="user">
           <Row>
             <div className="input">
-              <textarea type="text" className="form-control input-text" rows="3" />
+              <textarea type="text" className="form-control input-text" rows="3" id="question" />
             </div>
           </Row>
           <Row>
-            <Button color="primary">Speak now!</Button>
+            <Button color="primary" onClick={this.props.speak}>Speak now!</Button>
           </Row>
         </div>
     )
