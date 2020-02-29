@@ -1,17 +1,23 @@
 {
-  "name": "react",
+  "name": "react-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --mode development ./src/index.js --output ./static/react/main.js"
+    "start": "react-scripts start",
+    "build": "react-scripts build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "react-scripts": "^3.4.0"
   }
 }
