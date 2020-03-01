@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css?family=Trade+Winds&display=swap');
+
+body { 
+  animation: fadeInAnimation ease 1.5s;
+  animation-iteration-count: 1; 
+  animation-fill-mode: forwards; 
+  font-family: 'Trade Winds', serif;
+} 
+  
+@keyframes fadeInAnimation { 
+  0% { 
+    opacity: 0; 
+  } 
+  100% { 
+    opacity: 0.8; 
+  } 
+}
+
+.user {
+  margin: 20px;
+  left: 0;
+  position: absolute;
+}
+
+
+#question {
+  width: 300px;
+  height: 300px;
+}
+
+.user button {
+  margin-top: 10px;
+  width: 500px;
+  background-color: #D2B48C;
+  color: #000;
+  border-color: #8B4513;
+  font-family: 'Trade Winds', serif;
+}
+
+.user button:hover {
+  background-color: #8B4513;
+  color: #D2B48C;
+  border-color: #D2B48C;
+}
+
+.user textarea, .user textarea:focus {
+  background: transparent;
+  border:5px solid #8B4513;
+}
