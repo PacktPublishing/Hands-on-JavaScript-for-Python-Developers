@@ -3,12 +3,11 @@ from django.template import Context, loader
 from bot.models import Text
 import random
 import json
+from django.shortcuts import render
 
 
 def index(request):
-    template = loader.get_template("bot/index.html")
-
-    return HttpResponse(template.render())
+    return render(request, "../react-frontend/build/index.html")
 
 
 def api(request):
