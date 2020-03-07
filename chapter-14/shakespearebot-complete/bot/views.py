@@ -10,7 +10,7 @@ def index(request):
     return render(request, "../react-frontend/build/index.html")
 
 def api(request):
-    query = json.loads(request.query)['chattext']
+    query = json.loads(request.GET['chattext'])
     responses = Text.objects.filter(PlayerLine__contains=" %s " % (query))
 
     if len(responses) > 0:

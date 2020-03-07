@@ -26,7 +26,7 @@ export default class Bot extends React.Component {
 
   captureInput(e) {
     const question = document.querySelector('#question').value
-    fetch(`/api/?chattext=${question}`)
+    fetch(`/api?chattext="${question}"`)
       .then((response) => response.text())
       .then((data) => {
         this.setState({
