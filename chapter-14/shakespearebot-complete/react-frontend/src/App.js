@@ -1,6 +1,7 @@
 import React from 'react';
 import Bot from './components/bot/bot';
 import './App.css';
+import './css/styles.css'
 
 function App() {
   return (
