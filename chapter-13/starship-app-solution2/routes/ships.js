@@ -16,7 +16,7 @@ router.post('/', upload.none(), async (req, res, next) => {
 });
 
 router.post('/random', async (req, res, next) => {
-  res.sendJSON(await ShipsController.createRandom());
+  res.json(await ShipsController.createRandom());
 });
 
 router.delete('/:ship', async (req, res, next) => {
