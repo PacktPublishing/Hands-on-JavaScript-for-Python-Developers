@@ -8,7 +8,9 @@
     "@testing-library/user-event": "^7.1.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "react-typing-effect": "^2.0.3",
+    "reactstrap": "^8.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
