@@ -25,14 +25,18 @@ loadDB();
 
 const eliminateExistingShips = async () => {
   const fleet = await database.collection("fleet").find().toArray();
-  
-  const names = Object.values(fleet).map((value, index, arr) => {
-    return value.name;
-  });
 
-  const availableNames = names.filter((val) => {
-    return !names.includes(val);
-  });
+  const fleetNames = [];
+
+  fleet.forEach(ship => {
+    fleetNames.push(ship.name)
+  })
+
+  const names = await database.collection("names").find().toArray();
+
+  const availableNames = names[0].names.filter((name) => {
+    return fleetNames.indexOf(name)
+  })
 
   const unavailableRegistryNumbers = Object.values(fleet).map((value, index, arr) => {
     return value.registry;
@@ -50,17 +54,13 @@ exports.createShip = async (data) => {
 }
 
 exports.getFleet = async () => {
-  client.connect(err => {
-    const fleet = client.db("starships").collection("fleet")
-    fleet.find().toArray((err, data) => {
-      return data.sort((a, b) => (a.name > b.name) ? 1 : -1)
-    })
-  })
+  const fleet = await database.collection("fleet").find().toArray();
+
+  return fleet.sort((a, b) => (a.name > b.name) ? 1 : -1)
 }
 
 exports.createRandom = async () => {
-  console.log('something', await eliminateExistingShips())
-  return
+  const { names, unavailableRegistries } = await eliminateExistingShips();
 
   const randomSeed = Math.ceil(Math.random() * names.length);
 
@@ -81,14 +81,11 @@ exports.createRandom = async () => {
     shipData.registry = `NCC-${Math.round(Math.random() * 10000)}`;
   }
 
-  client.connect(err => {
-    const collection = client.db("starships").collection("fleet")
-    collection.insertOne(shipData, (err, res) => {
-      if (err) {
-        console.error(err)
-        return
-      }
-    })
+  database.collection("fleet").insertOne(shipData, (err, res) => {
+    if (err) {
+      console.error(err)
+      return
+    }
   })
 
   return;
