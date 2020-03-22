@@ -15,7 +15,7 @@ document.querySelectorAll('.scuttle').forEach((el) => {
     fetch(`/ships/${e.currentTarget.closest('tr').dataset.ship}`, {
       method: 'DELETE'
     }).then( () => {
-      window.location.reload();
+      window.location.reload()
     })
   })
 })
@@ -24,6 +24,8 @@ document.querySelector('.add-ship').addEventListener('click', () => {
   fetch('/ships', {
     method: 'POST',
     body: new FormData(document.querySelector('form'))
+  }).then( () => {
+    window.location.reload()
   })
 })
 

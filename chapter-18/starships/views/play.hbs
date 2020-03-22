@@ -1,0 +1,36 @@
+<h1>ATTACK!</h1>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Registry</th>
+    <th>Top Speed</th>
+    <th>Shield Strength</th>
+    <th>Phaser Power</th>
+    <th>Torpedo Complement</th>
+    <th>Hull Damage</th>
+    <th>Attack</th>
+    <th></th>
+  </tr>
+  {{#each fleet}}
+  <tr data-ship="{{this.registry}}">
+    <td>{{this.name}}</td>
+    <td class="attacker">{{this.registry}}</td>
+    <td>{{this.speed}}</td>
+    <td>{{this.shields}}</td>
+    <td>{{this.phasers}}</td>
+    <td>{{this.torpedoes}}</td>
+    <td>{{this.hull}}</td>
+    <td data-attacker="{{this.registry}}">Fire at:
+        <select class="target">
+          {{#each ../enemyFleet}}
+            <option value="{{this.registry}}">{{this.registry}}</option>
+          {{/each}}
+        </select>
+        <button type="button" class="btn btn-danger fire">Fire Phasers!</button>
+        <button type="button" class="btn btn-primary fire-torpedo">Fire Torpeo!</button>
+  </tr>
+  {{/each}}
+</table>
+
+<script src="/javascripts/play.js"></script>

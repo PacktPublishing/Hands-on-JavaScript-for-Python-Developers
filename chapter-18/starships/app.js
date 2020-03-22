@@ -6,6 +6,8 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var shipsRouter = require('./routes/ships');
+var enemyRouter = require('./routes/enemy');
+var playRouter = require('./routes/play');
 var app = express();
 
 // view engine setup
@@ -20,6 +22,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/ships', shipsRouter);
+app.use('/enemy', enemyRouter);
+app.use('/play', playRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

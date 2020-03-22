@@ -37,11 +37,13 @@
   <form id="addShip" action="#">
     <table class="table">
       <tr>
-        <td colspan="6"><a class="btn btn-primary random">Add a Random Ship</a></td>
+        <td colspan="5"><a class="btn btn-primary random">Add a Random Ship</a></td>
+      </tr>
+      <tr>
+        <td colspan="5"><h3>Add a Specific Ship</h3></td>
       </tr>
       <tr>
         <th>Name</th>	
-        <th>Registry</th>
         <th>Top Speed</th>
         <th>Phaser Power</th>
         <th>Torpedo Complement</th>
@@ -49,13 +51,14 @@
       </tr>
       <tr>
         <td><input type="text" name="name" id="name" placeholder="USS Enterprise" /></td>
-        <td><input type="text" name="registry" id="registry" placeholder="NCC-1701-D" /></td>
         <td><input type="number" name="speed" id="speed" class="number" placeholder="Between 1-9.99" step=".1" max="9.99" min="1" /></td>
         <td><input type="number" name="phasers" id="phasers" class="number" placeholder="Between 1-100" step="1" min="1" max="100" /></td>
         <td><input type="number" name="torpedoes" id="torpedoes" class="number" placeholder="Between 1-255" step="1" min="1" max="255" /></td>
         <td><a class="btn btn-primary add-ship">Add Ship</a></td>
       </tr>
     </table>
+
+    <a class="btn btn-primary begin" href="/enemy">Ready for Battle?</a>
   </form>
 
 <script src="/javascripts/index.js"></script>
