@@ -1,2 +1,3 @@
 .node-persist
-.env
+.env*
+data/mongo/*
