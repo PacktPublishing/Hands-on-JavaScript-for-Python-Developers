@@ -139,7 +139,7 @@ exports.registerDamage = async (ship, damage) => {
     }
   }
 
-  await database.collection(enemy).updateOne({ registry: ship }, { $set: { shields: target.shields, hull: target.hull } });
+  await database.collection(enemy).updateOne({ registry: ship.registry }, { $set: { shields: target.shields, hull: target.hull } });
 
   if (target.hull <= 0) {
     this.scuttle(ship);

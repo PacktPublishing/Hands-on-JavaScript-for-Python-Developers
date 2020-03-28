@@ -3,7 +3,6 @@ const ShipsModel = require('../models/ships')
 const TORPEDO_DAMAGE = 125
 
 const calculateDamage = (ship1, ship2, weapon) => {
-  console.log(ship2)
   const distanceBetweenShips =  Math.sqrt(Math.pow(ship2.x - ship1.x, 2) + Math.pow(ship2.y - ship1.y, 2) + Math.pow(ship2.z - ship1.z, 2))
   const chanceToStrike = Math.floor(100-distanceBetweenShips)
   const didStrike = (Math.ceil(Math.random()*100) - chanceToStrike) ? true : false
@@ -32,13 +31,13 @@ exports.fire = async (ship1, ship2, weapon) => {
   const source = await ShipsModel.getShip(ship1)
   let damage = calculateDamage(source, target, weapon)
 
-  if (weapon === 'torpedo' && source.torpedoes > 0) {
-    ShipsModel.fireTorpedo(ship1)
-  } else if (source.torpedoes <= 0) {
-    damage = 0
-  }
+  // if (weapon === 'torpedo' && source.torpedoes > 0) {
+  //   ShipsModel.fireTorpedo(ship1)
+  // } else if (source.torpedoes <= 0) {
+  //   damage = 0
+  // }
   
-  await ShipsModel.registerDamage(target, damage)
+  await ShipsModel.registerDamage(target, source, damage)
 
   return damage
 }
@@ -53,7 +52,6 @@ exports.createFleet = async () => {
     }
     return await this.getFleet(true)
   } else {
-    console.log(1)
     return enemyFleet
   }
 }
