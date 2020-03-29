@@ -31,7 +31,6 @@ const eliminateExistingShips = async () => {
   return { names: availableNames, unavailableRegistries: unavailableRegistryNumbers };
 }
 
-
 exports.createShip = async (data) => {
   data = {
     ...data,
@@ -47,7 +46,7 @@ exports.createShip = async (data) => {
 
   data.registry = `NCC-${Math.round(Math.random() * 10000)}`
 
-  while (fleet.unavailableRegistries.indexOf(data.registry) > -1) {
+  while (fleet.unavailableRegistries.includes(data.registry)) {
     data.registry = `NCC-${Math.round(Math.random() * 10000)}`
   }
 
@@ -102,7 +101,10 @@ exports.getShip = async (ship) => {
 }
 
 exports.fireTorpedo = async (ship) => {
-  return await db.collection("fleet").updateOne({ registry: ship}, { $set: { torpedoes: torpedoes-- } });
+  const foundship = await this.getShip(ship)
+  foundship.torpedoes -= 1;
+
+  return await db.collection("fleet").updateOne({ registry: ship}, { $set: { torpedoes: foundship.torpedoes } });
 }
 
 exports.registerDamage = async (ship, damage) => {
@@ -110,18 +112,17 @@ exports.registerDamage = async (ship, damage) => {
   
   const target = await db.collection(enemy).findOne({ registry: ship.registry })
 
-  if (target.shields) {
-    target.shields -= damage;
-    if (target.shields < 0) {
-      target.hull -= Math.abs(target.shields);
-      target.shields = 0;
-    }
+  if (target.shields > damage) {
+    target.shields -= damage
+  } else {
+    target.shields -= damage
+    target.hull += Math.abs(target.shields)
+    target.shields = 0
   }
 
-  await database.collection(enemy).updateOne({ registry: ship.registry }, { $set: { shields: target.shields, hull: target.hull } });
-
-  if (target.hull <= 0) {
-    this.scuttle(ship);
+  await db.collection(enemy).updateOne({ registry: ship.registry }, { $set: { shields: target.shields, hull: target.hull } });
+  if (target.hull >= 100) {
+    await this.scuttle(target.registry);
     return 0;
   }
 
