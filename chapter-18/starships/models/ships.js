@@ -33,12 +33,12 @@ const eliminateExistingShips = async () => {
 
 exports.createShip = async (data) => {
   data = {
-    ...data,
     shields: 100,
     hull: 0,
     x: 0,
     y: 0,
-    z: 0
+    z: 0,
+    ...data,
   }
 
 

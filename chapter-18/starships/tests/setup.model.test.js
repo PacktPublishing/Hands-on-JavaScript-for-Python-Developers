@@ -9,6 +9,7 @@ describe('insert', () => {
   });
 
   afterAll(async (done) => {
+    await db.collection('names').deleteMany({})
     await MongoDB.disconnectDB()
     done()
   });

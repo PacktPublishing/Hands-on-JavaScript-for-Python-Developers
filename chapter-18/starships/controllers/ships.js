@@ -14,8 +14,8 @@ exports.createShip = async (data) => {
   return await ShipsModel.createShip(data)
 }
 
-exports.getFleet = async (fleet = false) => {
-  return await ShipsModel.getFleet(fleet)
+exports.getFleet = async (enemy = false) => {
+  return await ShipsModel.getFleet(enemy)
 }
 
 exports.createRandom = async (enemy = false) => {
@@ -30,14 +30,13 @@ exports.fire = async (ship1, ship2, weapon) => {
   const target = await ShipsModel.getShip(ship2)
   const source = await ShipsModel.getShip(ship1)
   let damage = calculateDamage(source, target, weapon)
-
   // if (weapon === 'torpedo' && source.torpedoes > 0) {
   //   ShipsModel.fireTorpedo(ship1)
   // } else if (source.torpedoes <= 0) {
   //   damage = 0
   // }
   
-  await ShipsModel.registerDamage(target, source, damage)
+  await ShipsModel.registerDamage(target, damage)
 
   return damage
 }
@@ -48,9 +47,9 @@ exports.createFleet = async () => {
 
   if (enemyFleet.length <= 0) {
     for (let i = 0; i < playerFleet.length; i++) {
-      this.createRandom(true)
+      await this.createRandom(true)
     }
-    return await this.getFleet(true)
+    return enemyFleet
   } else {
     return enemyFleet
   }

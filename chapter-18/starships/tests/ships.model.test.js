@@ -3,23 +3,20 @@ const insertRandomNames = require('../models/setup')
 
 const { getFleet, createRandom, scuttle, getShip, createShip, fireTorpedo, registerDamage } = require('../models/ships')
 
-describe('fleet', () => {
+describe('fleet operations', () => {
   let db
   let seleya
 
   beforeAll(async () => {
     db = await MongoDB.connectDB('test')
     await db.collection('fleet').deleteMany({})
+    await db.collection('enemy').deleteMany({})
     await insertRandomNames()
   });
 
   afterAll(async (done) => {
     await MongoDB.disconnectDB();
     done()
-  });
-
-  beforeEach(async () => {
-    // await db.collection('test').deleteMany({});
   });
 
   it('should return an empty fleet', async() => {
