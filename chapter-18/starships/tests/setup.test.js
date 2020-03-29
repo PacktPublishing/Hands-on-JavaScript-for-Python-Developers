@@ -1,5 +1,5 @@
 const MongoDB = require('../models/mongo')
-// const insertRandomNames = require('../models/setup')
+const insertRandomNames = require('../models/setup')
 
 describe('insert', () => {
   let db;
@@ -28,10 +28,15 @@ describe('insert', () => {
     expect(insertedUser).toEqual(mockUser);
   });
 
-  // it('should insert the random names', async () => {
-  //   const res = await insertRandomNames()
-  //   // expect(res.statusCode).toEqual(200)
-  // });
+  it('should insert the random names', async () => {
+    const res = await insertRandomNames()
+    
+    db = await MongoDB.connectDB()
+
+    const names = await db.collection("names").find().toArray()
+    console.log(names)
+    expect(names.length).toBeGreaterThan(0)
+  });
 
   // it('should retrieve the first name', async() => {
   //   const insertedShip = await db.findOne({ key:  });
