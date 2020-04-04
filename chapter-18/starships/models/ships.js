@@ -129,20 +129,3 @@ exports.registerDamage = async (ship, damage) => {
 
   return { shields: target.shields, hull: target.hull }
 }
-
-exports.moveShip = async (ship, data) => {
-  const enemy = (!ship.registry.indexOf('NCC')) ? "fleet" : "enemy"
-  
-  let shipToMove = await db.collection(enemy).findOne({ registry: ship.registry })
-
-  shipToMove = {
-    ...shipToMove,
-    ...data
-  }
-
-  await db.collection(enemy).replaceOne({ registry: shipToMove.registry }, shipToMove, { upsert: true })
-
-  const movedShip = await db.collection(enemy).findOne({ registry: shipToMove.registry })
-
-  return movedShip
-}
