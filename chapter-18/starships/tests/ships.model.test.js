@@ -1,7 +1,7 @@
 const MongoDB = require('../models/mongo')
 const insertRandomNames = require('../models/setup')
 
-const { getFleet, createRandom, scuttle, getShip, createShip, fireTorpedo, registerDamage } = require('../models/ships')
+const { getFleet, createRandom, scuttle, getShip, createShip, fireTorpedo, registerDamage, moveShip } = require('../models/ships')
 
 describe('fleet operations', () => {
   let db
@@ -49,7 +49,7 @@ describe('fleet operations', () => {
   it('should create and find one ship', async() => {
     const data = {
       name: "Seleya",
-      speed: "9.5",
+      speed: "9",
       phasers: 100,
       torpedoes: 10
     }
@@ -60,8 +60,18 @@ describe('fleet operations', () => {
     expect(returnedShip.name).toEqual("Seleya")
   })
 
-  it('should fire one torpedo from the Seleya', async() => {
+  it('should move the Seleya', async () => {
     seleya = await getShip(seleya)
+
+    const returnedShip = await moveShip(seleya, { x: 1, y: 2, z: 3})
+
+    expect(returnedShip.x).toEqual(1)
+    expect(returnedShip.y).toEqual(2)
+    expect(returnedShip.z).toEqual(3)
+  })
+
+  it('should fire one torpedo from the Seleya', async() => {
+    seleya = await getShip(seleya.registry)
     await fireTorpedo(seleya.registry)
 
     seleya = await getShip(seleya.registry)
@@ -95,5 +105,4 @@ describe('fleet operations', () => {
 
     expect(returnedShip).toEqual(null)
   })
-
 });

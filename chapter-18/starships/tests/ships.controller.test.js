@@ -61,7 +61,7 @@ describe('fleet controller operations', () => {
 
   it('should create two specific ships and fire at one', async () => {
     let data = {
-      speed: "9.5",
+      speed: "9",
       phasers: 100,
       torpedoes: 10,
       x: 0,

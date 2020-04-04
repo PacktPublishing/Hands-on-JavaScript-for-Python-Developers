@@ -24,7 +24,7 @@ const eliminateExistingShips = async () => {
     return fleetNames.indexOf(name)
   })
 
-  const unavailableRegistryNumbers = Object.values(fleet).map((value, index, arr) => {
+  const unavailableRegistryNumbers = Object.values(fleet).map((value) => {
     return value.registry;
   });
 
@@ -72,7 +72,7 @@ exports.createRandom = async (enemy = false) => {
     shields: 100,
     torpedoes: (!enemy) ? Math.round(Math.random() * 255 + 1) : 0,
     hull: 0,
-    speed: (Math.random() * 9 + 1).toPrecision(2),
+    speed: Math.floor(Math.random() * 9 + 1),
     phasers: Math.round(Math.random() * 100 + 1),
     x: Math.round(Math.random() * 100),
     y: Math.round(Math.random() * 100),
@@ -84,7 +84,7 @@ exports.createRandom = async (enemy = false) => {
     shipData.registry = `NCC-${Math.round(Math.random() * 10000)}`;
   }
 
-  const collection = await db.collection((!enemy) ? "fleet" : "enemy").insertOne(shipData)
+  await db.collection((!enemy) ? "fleet" : "enemy").insertOne(shipData)
 
   return shipData.registry
 }
@@ -94,7 +94,7 @@ exports.scuttle = async (ship) => {
   return;
 }
 
-exports.getShip = async (ship) => {
+exports.getShip = async (ship) => {  
   const enemy = (!ship.indexOf('NCC')) ? "fleet" : "enemy"
 
   return await db.collection(enemy).findOne({ registry: ship });
@@ -120,11 +120,29 @@ exports.registerDamage = async (ship, damage) => {
     target.shields = 0
   }
 
-  await db.collection(enemy).updateOne({ registry: ship.registry }, { $set: { shields: target.shields, hull: target.hull } });
+  await db.collection(enemy).updateOne({ registry: ship.registry }, { $set: { shields: target.shields, hull: target.hull } })
+  
   if (target.hull >= 100) {
-    await this.scuttle(target.registry);
-    return 0;
+    await this.scuttle(target.registry)
+    return 0
   }
 
-  return { shields: target.shields, hull: target.hull };
+  return { shields: target.shields, hull: target.hull }
+}
+
+exports.moveShip = async (ship, data) => {
+  const enemy = (!ship.registry.indexOf('NCC')) ? "fleet" : "enemy"
+  
+  let shipToMove = await db.collection(enemy).findOne({ registry: ship.registry })
+
+  shipToMove = {
+    ...shipToMove,
+    ...data
+  }
+
+  await db.collection(enemy).replaceOne({ registry: shipToMove.registry }, shipToMove, { upsert: true })
+
+  const movedShip = await db.collection(enemy).findOne({ registry: shipToMove.registry })
+
+  return movedShip
 }

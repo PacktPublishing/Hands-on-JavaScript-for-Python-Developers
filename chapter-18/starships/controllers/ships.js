@@ -30,15 +30,10 @@ exports.fire = async (ship1, ship2, weapon) => {
   const target = await ShipsModel.getShip(ship2)
   const source = await ShipsModel.getShip(ship1)
   let damage = calculateDamage(source, target, weapon)
-  // if (weapon === 'torpedo' && source.torpedoes > 0) {
-  //   ShipsModel.fireTorpedo(ship1)
-  // } else if (source.torpedoes <= 0) {
-  //   damage = 0
-  // }
   
   await ShipsModel.registerDamage(target, damage)
 
-  return damage
+  return { damage: damage, stats: await ShipsModel.getShip(ship2) }
 }
 
 exports.createFleet = async () => {
