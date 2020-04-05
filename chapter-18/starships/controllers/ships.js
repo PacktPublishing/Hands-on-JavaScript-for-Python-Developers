@@ -33,7 +33,7 @@ exports.fire = async (ship1, ship2, weapon) => {
   
   target = await ShipsModel.registerDamage(target, damage)
 
-  return target
+  return { target: target, fleet: await this.getFleet(false), enemyFleet: await this.getFleet(true) }
 }
 
 exports.createFleet = async () => {
