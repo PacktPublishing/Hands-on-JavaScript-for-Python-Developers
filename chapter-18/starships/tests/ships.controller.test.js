@@ -76,12 +76,12 @@ describe('fleet controller operations', () => {
     let borg = await createRandom(true)
     borg = await getShip(borg)
         
-    const damage = await fire(enterprise, borg.registry, 'phasers')
+    let damage = await fire(enterprise, borg.registry, 'phasers')
 
     expect(damage).toBeTruthy()
     attackedBorg = await getShip(borg.registry)
 
-    expect(attackedBorg.shields).toBeLessThan(borg.shields)    
+    expect(attackedBorg.shields).toBeLessThan(borg.shields)
   })
 
   it('should create two fleets', async () => {

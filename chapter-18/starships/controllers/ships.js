@@ -27,13 +27,13 @@ exports.scuttle = async (ship) => {
 }
 
 exports.fire = async (ship1, ship2, weapon) => {
-  const target = await ShipsModel.getShip(ship2)
+  let target = await ShipsModel.getShip(ship2)
   const source = await ShipsModel.getShip(ship1)
   let damage = calculateDamage(source, target, weapon)
   
-  await ShipsModel.registerDamage(target, damage)
+  target = await ShipsModel.registerDamage(target, damage)
 
-  return { damage: damage, stats: await ShipsModel.getShip(ship2) }
+  return target
 }
 
 exports.createFleet = async () => {

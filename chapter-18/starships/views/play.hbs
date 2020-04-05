@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="/stylesheets/micromodal.css" />
+
 <h1>ATTACK!</h1>
 
 <table class="table">
@@ -17,18 +19,18 @@
     <td>{{this.name}}</td>
     <td class="attacker">{{this.registry}}</td>
     <td>{{this.speed}}</td>
-    <td>{{this.shields}}</td>
+    <td class="shields">{{this.shields}}</td>
     <td>{{this.phasers}}</td>
-    <td>{{this.torpedoes}}</td>
-    <td>{{this.hull}}</td>
+    <td class="torpedoes">{{this.torpedoes}}</td>
+    <td class="hull">{{this.hull}}</td>
     <td data-attacker="{{this.registry}}">Fire at:
-        <select class="target">
-          {{#each ../enemyFleet}}
-            <option value="{{this.registry}}">{{this.registry}}</option>
-          {{/each}}
-        </select>
-        <button type="button" class="btn btn-danger fire">Fire Phasers!</button>
-        <button type="button" class="btn btn-primary fire-torpedo">Fire Torpeo!</button>
+      <select class="target">
+        {{#each ../enemyFleet}}
+        <option value="{{this.registry}}">{{this.registry}}</option>
+        {{/each}}
+      </select>
+      <button type="button" class="btn btn-danger fire">Fire Phasers!</button>
+      <button type="button" class="btn btn-primary fire-torpedo">Fire Torpedo!</button>
   </tr>
   {{/each}}
 </table>
@@ -51,19 +53,35 @@
     <td>{{this.name}}</td>
     <td class="attacker">{{this.registry}}</td>
     <td>{{this.speed}}</td>
-    <td>{{this.shields}}</td>
+    <td class="shields">{{this.shields}}</td>
     <td>{{this.phasers}}</td>
-    <td>{{this.torpedoes}}</td>
-    <td>{{this.hull}}</td>
+    <td class="torpedoes">{{this.torpedoes}}</td>
+    <td class="hull">{{this.hull}}</td>
     <td data-attacker="{{this.registry}}">Fire at:
-        <select class="target">
-          {{#each ../fleet}}
-            <option value="{{this.registry}}">{{this.registry}}</option>
-          {{/each}}
-        </select>
-        <button type="button" class="btn btn-danger fire">Fire Phasers!</button>
-        <button type="button" class="btn btn-primary fire-torpedo">Fire Torpeo!</button>
+      <select class="target">
+        {{#each ../fleet}}
+        <option value="{{this.registry}}">{{this.registry}}</option>
+        {{/each}}
+      </select>
+      <button type="button" class="btn btn-danger fire">Fire Phasers!</button>
+      <button type="button" class="btn btn-primary fire-torpedo">Fire Torpedo!</button>
   </tr>
   {{/each}}
 </table>
+
+<div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+  <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+      <header class="modal__header">
+        <h2 class="modal__title" id="modal-1-title"></h2>
+
+        <footer class="modal__footer">
+          <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Close</button>
+        </footer>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
 <script src="/javascripts/play.js"></script>

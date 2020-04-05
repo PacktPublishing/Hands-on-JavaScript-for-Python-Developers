@@ -1,4 +1,3 @@
-const fs = require('fs')
 const MongoDB = require('./mongo')
 
 let db
@@ -70,7 +69,7 @@ exports.createRandom = async (enemy = false) => {
     name: (!enemy) ? names[randomSeed] : "Borg Cube",
     registry: (!enemy) ? `NCC-${Math.round(Math.random() * 10000)}` : `Cube-${Math.round(Math.random() * 10000)}`,
     shields: 100,
-    torpedoes: (!enemy) ? Math.round(Math.random() * 255 + 1) : 0,
+    torpedoes: Math.round(Math.random() * 255 + 1),
     hull: 0,
     speed: Math.floor(Math.random() * 9 + 1),
     phasers: Math.round(Math.random() * 100 + 1),
@@ -90,7 +89,9 @@ exports.createRandom = async (enemy = false) => {
 }
 
 exports.scuttle = async (ship) => {
-  await db.collection("fleet").deleteOne({ registry: ship }, 1);
+  const enemy = (!ship.indexOf('NCC')) ? "fleet" : "enemy"
+
+  await db.collection(enemy).deleteOne({ registry: ship }, 1);
   return;
 }
 
@@ -101,10 +102,11 @@ exports.getShip = async (ship) => {
 }
 
 exports.fireTorpedo = async (ship) => {
+  const enemy = (!ship.indexOf('NCC')) ? "fleet" : "enemy"
   const foundship = await this.getShip(ship)
   foundship.torpedoes -= 1;
 
-  return await db.collection("fleet").updateOne({ registry: ship}, { $set: { torpedoes: foundship.torpedoes } });
+  return await db.collection(enemy).updateOne({ registry: ship}, { $set: { torpedoes: foundship.torpedoes } });
 }
 
 exports.registerDamage = async (ship, damage) => {
@@ -124,8 +126,8 @@ exports.registerDamage = async (ship, damage) => {
   
   if (target.hull >= 100) {
     await this.scuttle(target.registry)
-    return 0
+    target.scuttled = true
   }
 
-  return { shields: target.shields, hull: target.hull }
+  return target
 }
