@@ -1,7 +1,8 @@
 document.querySelectorAll('.fire').forEach((el) => {
   el.addEventListener('click', (e) => {
-    const target = e.target.previousSibling.previousSibling.value
-    fetch(`/play/fire?attacker=${e.target.closest('td').dataset.attacker}&target=${target}&weapon=phasers`).then(response => response.json()).then(data => {
+    const weapon = (e.target.classList.value.indexOf('fire-torpedo') > 0) ? "torpedo" : "phasers"
+    const target = e.target.parentNode.getElementsByTagName('select')[0].value
+    fetch(`/play/fire?attacker=${e.target.closest('td').dataset.attacker}&target=${target}&weapon=${weapon}`).then(response => response.json()).then(data => {
       const { registry, name, shields, torpedoes, hull, scuttled } = data.target
             
       if (scuttled) {

@@ -1,6 +1,6 @@
 const ShipsModel = require('../models/ships')
 
-const TORPEDO_DAMAGE = 125
+const TORPEDO_DAMAGE = 75
 
 const calculateDamage = (ship1, ship2, weapon) => {
   const distanceBetweenShips =  Math.sqrt(Math.pow(ship2.x - ship1.x, 2) + Math.pow(ship2.y - ship1.y, 2) + Math.pow(ship2.z - ship1.z, 2))
