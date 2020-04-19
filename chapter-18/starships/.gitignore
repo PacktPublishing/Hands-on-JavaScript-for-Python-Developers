@@ -1,3 +1,5 @@
 .node-persist
 .env*
 data/mongo/*
+node_modules
+tests/test.test.js
