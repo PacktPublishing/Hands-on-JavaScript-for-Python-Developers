@@ -9,25 +9,25 @@ const setup = async () => {
 const eliminateExistingShips = async () => {
   await setup()
 
-  const fleet = await db.collection("fleet").find().toArray();
+  const fleet = await db.collection("fleet").find().toArray()
 
-  const fleetNames = [];
+  const fleetNames = []
 
   fleet.forEach(ship => {
     fleetNames.push(ship.name)
   })
 
-  const names = await db.collection("names").find().toArray();
+  const names = await db.collection("names").find().toArray()
 
   const availableNames = names[0].names.filter((name) => {
     return fleetNames.indexOf(name)
   })
 
   const unavailableRegistryNumbers = Object.values(fleet).map((value) => {
-    return value.registry;
+    return value.registry
   });
 
-  return { names: availableNames, unavailableRegistries: unavailableRegistryNumbers };
+  return { names: availableNames, unavailableRegistries: unavailableRegistryNumbers }
 }
 
 exports.createShip = async (data) => {
@@ -56,12 +56,12 @@ exports.createShip = async (data) => {
 exports.getFleet = async (enemy) => {
   await setup()
 
-  const fleet = await db.collection((!enemy) ? "fleet" : "enemy").find().toArray();
+  const fleet = await db.collection((!enemy) ? "fleet" : "enemy").find().toArray()
   return fleet.sort((a, b) => (a.name > b.name) ? 1 : -1)
 }
 
 exports.createRandom = async (enemy = false) => {
-  const { names, unavailableRegistries } = await eliminateExistingShips();
+  const { names, unavailableRegistries } = await eliminateExistingShips()
 
   const randomSeed = Math.ceil(Math.random() * names.length);
 
