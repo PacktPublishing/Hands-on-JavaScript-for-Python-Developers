@@ -3,7 +3,7 @@ const typoError = () => {
 }
 
 const fetchAttempt = () => {
-  fetch("https://swapi.co/api/undefined")
+  fetch("https://swapi.dev/api/undefined")
     .then((response) => {
         try {
           return response.json()

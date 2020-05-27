@@ -2,7 +2,7 @@ const axios = require('axios')
 const readline = require('readline')
 const inquirer = require("inquirer")
 
-const BASE_URL = "https://swapi.co/api/"
+const BASE_URL = "https://swapi.dev/api/"
 
 const rl = readline.createInterface({
   input: process.stdin,

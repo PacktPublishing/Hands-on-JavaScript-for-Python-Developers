@@ -29,7 +29,7 @@ class SWAPI {
 
   getPeople() {
     new Promise((resolve, reject) => {
-        this.fetchThis('https://swapi.co/api/people', this.people, resolve, reject)
+        this.fetchThis('https://swapi.dev/api/people', this.people, resolve, reject)
       })
       .then((response) => {
         this.people = response

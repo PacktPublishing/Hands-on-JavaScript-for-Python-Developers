@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 var SWAPI = function() {
   this.constructor();
-  this.getPeople('https://swapi.co/api/people/', this.people);
+  this.getPeople('https://swapi.dev/api/people/', this.people);
   $('.go').click(function(e) {
     swapi.getPerson($('#peopleSelector').val())
   });

@@ -4,7 +4,7 @@ let name = '',
   filmNames = ''
 let hello = "Hello! My name is {name} and I'm from {planet}. I've been in {films} and I'm a Jedi."
 
-fetch('https://swapi.co/api/people/1/')
+fetch('https://swapi.dev/api/people/1/')
   .then((response) => {
     return response.json()
   })
