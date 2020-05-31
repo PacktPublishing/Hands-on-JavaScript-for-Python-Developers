@@ -21,9 +21,10 @@ document.querySelectorAll('.scuttle').forEach((el) => {
 })
 
 document.querySelector('.add-ship').addEventListener('click', () => {
+  const formData =  new FormData(document.querySelector('form'))
   fetch('/ships', {
     method: 'POST',
-    body: new FormData(document.querySelector('form'))
+    body: formData
   }).then( () => {
     window.location.reload()
   })

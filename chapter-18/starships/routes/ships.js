@@ -10,7 +10,7 @@ router.get('/:ship1/attack/:ship2', async (req, res, next) => {
   res.sendStatus(200);
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', upload.none(), async (req, res, next) => {
   await ShipsController.createShip(req.body);
   res.sendStatus(200);
 });
