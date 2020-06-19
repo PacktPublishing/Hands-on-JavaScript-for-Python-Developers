@@ -1,4 +1,4 @@
-fetch('https://swapi.co/api/people/1/')
+fetch('https://swapi.dev/api/people/1/')
   .then((response) => {
     return response.json()
   })
