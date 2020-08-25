@@ -1,0 +1,175 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,500;0,700;1,400;1,700&display=swap");
+@import "~bootstrap/scss/bootstrap";
+
+$font-family: "Roboto", sans-serif;
+$bg-color: #6c7e91;
+$app-bg-color: #30455d;
+$primary-accent: #ff7a27;
+$primary: #cce8ff;
+
+body {
+  background-color: $bg-color;
+  font-family: $font-family;
+  margin: 2em;
+}
+
+a {
+  color: $primary;
+}
+
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1 {
+  color: $primary;
+  font-weight: 400;
+  font-size: 2em;
+  margin-top: 5px;
+}
+
+h2 {
+  color: $primary-accent;
+  font-weight: 400;
+  font-size: 1em;
+  margin-bottom: 5px;
+}
+
+.App {
+  background-color: $app-bg-color;
+  width: 90%;
+  min-height: 90vh;
+  padding: 1em;
+  border-radius: 1em;
+  box-shadow: 0 0 25px 5px rgba(0, 0, 0, 0.25);
+  flex-direction: row;
+  display: flex;
+}
+
+.Toolbar {
+  min-width: 2em;
+  display: inline-block;
+  border-right: 0.25px solid rgba($primary, 0.25);
+  padding-right: 1em;
+  height: 100%;
+
+  .tool {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 0.75em;
+
+    img {
+      vertical-align: middle;
+      width: 24px;
+      height: 24px;
+    }
+
+    &:not(.log-in) {
+      border: 0.25px solid rgba($primary, 0.25);
+      border-radius: 0.25em;
+    }
+  }
+
+  .search {
+    margin-top: 3em;
+  }
+}
+
+.Container {
+  margin: 0;
+  padding: 0;
+}
+
+.Photo {
+  img {
+    max-width: 385px;
+    margin-right: 1em;
+    float: left;
+  }
+}
+
+.Main {
+  padding: 0 1em;
+
+  .Story {
+    display: flex;
+    flex-direction: column;
+
+    .single-story {
+      font: 100 1em/1.5em Roboto, sans-serif;
+      color: $primary;
+
+      h3 {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.Dashboard {
+  .card {
+    display: inline-block;
+    color: $primary;
+    text-transform: uppercase;
+    text-align: center;
+    border: 0.25px solid rgba($primary, 0.25);
+    border-radius: 0.25em;
+    width: 140px;
+    background-color: inherit;
+    height: 200px;
+    padding: 20px;
+    margin: 20px auto;
+
+    img {
+      border: 0.25px solid rgba($primary, 0.25);
+      border-radius: 0.25em;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 20px;
+    }
+
+    .card-text {
+      font-size: 13px;
+      font-weight: 300;
+    }
+  }
+}
+
+.Editor {
+  width: calc(100vw - 20%);
+  height: calc(100vh - 20%);
+  
+  .ql-snow {
+    background-color: rgba($primary, 0.75);
+    
+    .ql-stroke {
+      stroke: #000;
+    }
+  
+    .ql-fill {
+      stroke: #000;
+    }
+  }
+
+  .editor {
+    margin-bottom: 1em;
+  }
+}
+
+.Login {
+  input, button {
+    background: none;
+    border: 1px solid $primary;
+    border-radius: 5px;
+    color: $primary;
+  }
+}
+
+.Story {
+  p {
+    color: $primary;
+  }
+}
