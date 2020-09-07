@@ -1,8 +1,8 @@
-const http = require('http');
+const https = require('https');
 
 require('dotenv').config();
 
-http.get(`http://api.edamam.com/search?app_id=${process.env.APPLICATION_ID}&app_key=${process.env.APPLICATION_KEY}&q=cheesecake`, (res) => {
+https.get(`https://api.edamam.com/search?app_id=${process.env.APPLICATION_ID}&app_key=${process.env.APPLICATION_KEY}&q=cheesecake`, (res) => {
   console.log("Got response: " + res.statusCode)
 
   res.setEncoding('utf8')

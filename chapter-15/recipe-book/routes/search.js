@@ -2,12 +2,12 @@ var express = require('express');
 var router = express.Router();
 const fs = require('fs');
 
-const http = require('http');
+const https = require('https');
 
 require('dotenv').config();
 
 router.get('/', (req, res, next) => {
-  http.get(`http://api.edamam.com/search?app_id=${process.env.APPLICATION_ID}&app_key=${process.env.APPLICATION_KEY}&q=${req.query.q}`, (data) => {
+  https.get(`https://api.edamam.com/search?app_id=${process.env.APPLICATION_ID}&app_key=${process.env.APPLICATION_KEY}&q=${req.query.q}`, (data) => {
 
     let chunks = '';
 
