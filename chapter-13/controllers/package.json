@@ -12,7 +12,7 @@
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "node-persist": "^3.0.5",
     "supervisor": "^0.12.0"
   }
