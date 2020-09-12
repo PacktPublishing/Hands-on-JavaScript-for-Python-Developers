@@ -1,4 +1,5 @@
 const ShipsModel = require('../models/ships')
+const insertRandomNames = require('../models/setup')
 
 const TORPEDO_DAMAGE = 75
 
@@ -8,6 +9,10 @@ const calculateDamage = (ship1, ship2, weapon) => {
   const didStrike = (Math.ceil(Math.random()*100) - chanceToStrike) ? true : false
   const damage = (didStrike) ? ((weapon == 'phasers') ? Math.ceil(Math.random()*ship1.phasers) : TORPEDO_DAMAGE) : 0
   return damage
+}
+
+exports.seedDatabase = async () => {
+  return await insertRandomNames()
 }
 
 exports.createShip = async (data) => {
