@@ -1,0 +1,16 @@
+.card-columns .card {
+  width: 75%;
+}
+
+.card-title.h5 {
+  font-size: 14px;
+}
+
+.btn {
+  margin: 10px;
+  width: 115px;
+}
+
+.card-body {
+  padding: 10px;
+}
