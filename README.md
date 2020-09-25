@@ -9,7 +9,7 @@ This is the code repository for [Hands-on JavaScript for Python Developers](http
 ## What is this book about?
 Knowledge of Python is a great foundation for learning other languages. This book will help you advance in your software engineering career by leveraging your Python programming skills to learn JavaScript and apply its unique features not only for frontend web development but also for streamlining work on the backend.
 
-This book covers the following exciting features: <First 5 What you'll learn points>
+This book covers the following exciting features: 
 * Become well-versed with the implementation of JavaScript at both the front-end and back-end
 * Understand separation of concerns while using Python programming for server-side development
 * Differentiate between Pythonic and JavaScript coding conventions
