@@ -61,3 +61,7 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 ## Get to Know the Author
 Chicago-born, Iowa-raised, Los Angeles-seasoned, and now New York City-flavored, **Sonyl Nagale** started his career as a graphic designer focusing on web, which led down the slippery slope to becoming a full-stack technologist instead. With an eye toward the client use case and conversation with the creative side, he prides himself on taking a holistic approach to software engineering. Having worked at start-ups and global media companies using a variety of languages and frameworks, he likes solving new and novel challenges. Passionate about education, he's always excited to have great teachable moments complete with laughter and seeing the “Aha!” moments in students’ eyes.
 
+### Download a free PDF
+
+ <i>If you have already purchased a print or Kindle version of this book, you can get a DRM-free PDF version at no cost.<br>Simply click on the link to claim your free PDF.</i>
+<p align="center"> <a href="https://packt.link/free-ebook/9781838648121">https://packt.link/free-ebook/9781838648121 </a> </p>
